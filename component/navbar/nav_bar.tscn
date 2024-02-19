@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://chh3v0bh3n3dd"]
+
+[ext_resource type="Script" path="res://component/navbar/nav_bar.gd" id="1_jwgj6"]
+[ext_resource type="Texture2D" uid="uid://b87q0sh7t3huw" path="res://asset/img/button-close.png" id="1_r7ch4"]
+[ext_resource type="Texture2D" uid="uid://cnldgcism2dar" path="res://asset/img/button-close-pressed.png" id="2_y34cy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uc6kj"]
+
+[node name="NavBar" type="PanelContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 140)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_uc6kj")
+script = ExtResource("1_jwgj6")
+
+[node name="HBoxContainerLeft" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 100)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ExitButton" type="TextureButton" parent="HBoxContainerLeft"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("1_r7ch4")
+texture_pressed = ExtResource("2_y34cy")
+
+[node name="HBoxContainerRight" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1

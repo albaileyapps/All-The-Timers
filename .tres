@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TimerSimple" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://resource/timer_simple_resource.gd" id="1_0yswv"]
+
+[resource]
+script = ExtResource("1_0yswv")
+title = "sghgh"
+period = {
+"hours": 0,
+"minutes": 0,
+"seconds": 0
+}
+index = 0
+path = ""

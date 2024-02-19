@@ -1,0 +1,10 @@
+res://component/timer_group_list/timer_group_list_item_simple.gd
+res://component/timer_group_list/timer_group_list_item_simple.tscn
+res://resource/timer_type_button_group.tres
+res://component/timer_group_list/timer_list_item_base.tscn
+res://component/timer_group_list/timer_group_list.tscn
+res://view/TimerGroupView/timer_group_view.tscn
+res://component/timer_group_list/timer_list_item_group.tscn
+res://component/navbar/nav_bar.tscn
+res://view/AddTimerView/add_timer_view.tscn
+res://resource/timer_simple_resource.gd

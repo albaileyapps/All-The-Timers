@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TimerGroup" load_steps=2 format=3 uid="uid://ljoutbq7fv42"]
+
+[ext_resource type="Script" path="res://resource/timer_group_resource.gd" id="1_ukydp"]
+
+[resource]
+script = ExtResource("1_ukydp")
+title = "root"
+path = "saved-timers"
+id = "root"
+index = 0
