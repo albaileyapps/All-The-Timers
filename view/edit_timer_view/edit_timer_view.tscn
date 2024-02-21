@@ -1,0 +1,121 @@
+[gd_scene load_steps=7 format=3 uid="uid://dul6k01rd31do"]
+
+[ext_resource type="Script" path="res://view/edit_timer_view/edit_timer_view.gd" id="1_p7im4"]
+[ext_resource type="Theme" uid="uid://cwmjrgohke0do" path="res://theme/main_theme.tres" id="1_u5vcn"]
+[ext_resource type="Shader" path="res://shader/panel_blur.gdshader" id="3_kisc5"]
+[ext_resource type="Texture2D" uid="uid://c21t28dluvwtg" path="res://asset/img/button-done.png" id="4_a2fih"]
+[ext_resource type="Texture2D" uid="uid://b87q0sh7t3huw" path="res://asset/img/button-close.png" id="5_fngt3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sv0m5"]
+shader = ExtResource("3_kisc5")
+shader_parameter/panel_color = null
+shader_parameter/alpha = 0.1
+
+[node name="AddTimerView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_u5vcn")
+script = ExtResource("1_p7im4")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_sv0m5")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Add A New Timer"
+horizontal_alignment = 1
+
+[node name="TitleLineEdit" type="LineEdit" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+placeholder_text = "Title"
+alignment = 1
+
+[node name="TimerSimpleSetupHBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HourSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerSimpleSetupHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 99.0
+alignment = 1
+suffix = ":"
+custom_arrow_step = 1.0
+
+[node name="MinuteSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerSimpleSetupHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 99.0
+alignment = 1
+suffix = ":"
+custom_arrow_step = 1.0
+
+[node name="SecondSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerSimpleSetupHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 99.0
+alignment = 1
+custom_arrow_step = 1.0
+
+[node name="TimerGroupSetupHBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerGroupSetupHBox"]
+layout_mode = 2
+text = "Sequential"
+
+[node name="Spacer" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+icon = ExtResource("5_fngt3")
+
+[node name="AddTimerButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Add Timer"
+icon = ExtResource("4_a2fih")
+
+[connection signal="text_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleLineEdit" to="." method="_on_title_line_edit_text_changed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AddTimerButton" to="." method="_on_add_timer_button_pressed"]

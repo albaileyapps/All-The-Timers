@@ -1,5 +1,7 @@
 extends Control
 
+signal exit_pressed
+
 @export var show_exit_button = false:
 	set(p_val): 
 		show_exit_button = p_val
@@ -17,3 +19,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_exit_button_pressed():
+	emit_signal("exit_pressed")

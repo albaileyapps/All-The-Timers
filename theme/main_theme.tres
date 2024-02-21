@@ -1,10 +1,11 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://cwmjrgohke0do"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cwmjrgohke0do"]
 
 [ext_resource type="Texture2D" uid="uid://sa2h5pljuyrh" path="res://asset/img/button-checkbox-checked.png" id="1_wnwfw"]
 [ext_resource type="Texture2D" uid="uid://b7m0vpnsofb8v" path="res://asset/img/button-radio-checked.png" id="2_rx7wj"]
 [ext_resource type="Texture2D" uid="uid://bsyv0rrg05lhi" path="res://asset/img/button-radio-unchecked.png" id="3_f5lj6"]
 [ext_resource type="Texture2D" uid="uid://dlp0c0scr1whe" path="res://asset/img/button-checkbox-unchecked.png" id="4_dsgle"]
 [ext_resource type="StyleBox" uid="uid://c8r4uldydnjji" path="res://theme/panel_style_box.tres" id="5_7qh70"]
+[ext_resource type="Texture2D" uid="uid://b5bicyfptxyh0" path="res://asset/img/icon-arrow-up-down.png" id="6_p334e"]
 
 [resource]
 Button/font_sizes/font_size = 48
@@ -21,3 +22,4 @@ Label/font_sizes/font_size = 48
 LineEdit/font_sizes/font_size = 48
 Panel/styles/panel = ExtResource("5_7qh70")
 PanelContainer/styles/panel = ExtResource("5_7qh70")
+SpinBox/icons/updown = ExtResource("6_p334e")

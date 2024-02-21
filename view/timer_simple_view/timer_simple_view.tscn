@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://bv111nc0nfjjo"]
+
+[ext_resource type="Script" path="res://view/timer_simple_view/timer_simple_view.gd" id="1_tx6t5"]
+[ext_resource type="PackedScene" uid="uid://chh3v0bh3n3dd" path="res://component/navbar/nav_bar.tscn" id="2_jetpk"]
+[ext_resource type="Texture2D" uid="uid://4t2tny6ytlbx" path="res://asset/img/button-start.png" id="3_kggkk"]
+[ext_resource type="Texture2D" uid="uid://cjqgy65y2xu7v" path="res://asset/img/button-start-pressed.png" id="4_kcxey"]
+[ext_resource type="Texture2D" uid="uid://begrtoiumly4a" path="res://asset/img/button-stop.png" id="5_mks6v"]
+[ext_resource type="Texture2D" uid="uid://b5mf8qy45g4lx" path="res://asset/img/button-stop-pressed.png" id="6_tfjsu"]
+[ext_resource type="Texture2D" uid="uid://cayo2wwxod65c" path="res://asset/img/button-pause.png" id="7_ikijx"]
+[ext_resource type="Texture2D" uid="uid://ux45vlcpwthj" path="res://asset/img/button-pause-pressed.png" id="8_gwcy5"]
+
+[node name="TimerSimpleView" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tx6t5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NavBar" parent="VBoxContainer" instance=ExtResource("2_jetpk")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "TITLE"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 208
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("3_kggkk")
+texture_pressed = ExtResource("4_kcxey")
+
+[node name="StopButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("5_mks6v")
+texture_pressed = ExtResource("6_tfjsu")
+
+[node name="PauseButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("7_ikijx")
+texture_pressed = ExtResource("8_gwcy5")
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/PauseButton" to="." method="_on_pause_button_pressed"]

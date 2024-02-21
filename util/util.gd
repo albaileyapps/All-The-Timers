@@ -9,3 +9,6 @@ func _ready():
 func uuid():
 	var now = str(int(Time.get_unix_time_from_system()))
 	return now + "-" + str(rng.randi_range(0, 1000000))
+	
+func convert_timer_period_to_string():
+	pass
