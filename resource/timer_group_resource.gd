@@ -16,7 +16,7 @@ func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index
 	path = p_path
 	index = p_index
 	sequential = p_sequential
-	print("init timer group")
+
 	
 #a TimerGroup loads its children timers when it is opened in a timer group view
 func load_children():
@@ -31,10 +31,8 @@ func load_children():
 			if file_name.get_extension() == "tres":
 				var res = ResourceLoader.load("user://" + path + "/" + file_name)
 				if res is TimerGroup: 
-					print("got a timer group")
 					children.append(res)
 				if res is TimerSimple:
-					print("got a simple timer")
 					res.complete.connect(_on_child_timer_complete)
 					children.append(res)
 				else:
@@ -73,11 +71,14 @@ func add_timer_simple(p_timer: TimerSimple):
 	emit_changed()
 	
 func delete_timer_simple(p_timer: TimerSimple):
+	p_timer.delete_file()
 	children.erase(p_timer)
 	emit_changed()
 	
-func delete_timer_group():
-	pass
+func delete_timer_group(p_timer_group: TimerGroup):
+	p_timer_group.delete_file()
+	children.erase(p_timer_group)
+	emit_changed()
 	
 func _on_child_timer_complete(p_child: TimerSimple):
 	print("child timer complete")
@@ -86,6 +87,10 @@ func save():
 	var dir_exists = DirAccess.dir_exists_absolute("user://" + path)
 	if !dir_exists: DirAccess.make_dir_absolute("user://" + path)
 	ResourceSaver.save(self, "user://" + path + ".tres")
+	
+func delete_file():
+	DirAccess.remove_absolute("user://" + path)
+	DirAccess.remove_absolute("user://" + path + ".tres")
 	
 func process(delta):
 	for timer in children:

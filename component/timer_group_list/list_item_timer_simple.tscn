@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqlh6f3jty1as"]
+[gd_scene load_steps=13 format=3 uid="uid://cqlh6f3jty1as"]
 
 [ext_resource type="Script" path="res://component/timer_group_list/list_item_timer_simple.gd" id="1_xgwgt"]
 [ext_resource type="PackedScene" uid="uid://ckia7vuewnr8q" path="res://component/timer_group_list/list_item_base.tscn" id="2_81v75"]
 [ext_resource type="Texture2D" uid="uid://4t2tny6ytlbx" path="res://asset/img/button-start.png" id="3_35xkq"]
 [ext_resource type="Texture2D" uid="uid://cjqgy65y2xu7v" path="res://asset/img/button-start-pressed.png" id="4_xa0ln"]
+[ext_resource type="Texture2D" uid="uid://begrtoiumly4a" path="res://asset/img/button-stop.png" id="5_l07ny"]
 [ext_resource type="Texture2D" uid="uid://cayo2wwxod65c" path="res://asset/img/button-pause.png" id="5_x5wy7"]
+[ext_resource type="Texture2D" uid="uid://b5mf8qy45g4lx" path="res://asset/img/button-stop-pressed.png" id="6_h41kj"]
 [ext_resource type="Texture2D" uid="uid://ux45vlcpwthj" path="res://asset/img/button-pause-pressed.png" id="6_ksrvi"]
 [ext_resource type="Texture2D" uid="uid://8d1qsnvamcid" path="res://asset/img/button-cog.png" id="7_1svvo"]
 [ext_resource type="Texture2D" uid="uid://b8r5p2tfmn3ou" path="res://asset/img/button-cog-pressed.png" id="8_qhpah"]
@@ -12,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://0oseeawka6xf" path="res://asset/img/button-delete-pressed.png" id="10_o8uc0"]
 
 [node name="TimerGroupListItemSimple" type="Control"]
-custom_minimum_size = Vector2(2.08165e-12, 100)
+custom_minimum_size = Vector2(2.08165e-12, 260)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,11 +22,11 @@ anchor_bottom = 1.0
 offset_bottom = -1820.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 3
 mouse_filter = 1
 script = ExtResource("1_xgwgt")
 
 [node name="ListItemBase" parent="." instance=ExtResource("2_81v75")]
+custom_minimum_size = Vector2(2.08165e-12, 200)
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -38,31 +40,51 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="HBox" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/HBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBox/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 82
 
-[node name="TimeLabel" type="Label" parent="MarginContainer/HBox"]
+[node name="TimeLabel" type="Label" parent="MarginContainer/HBox/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
 
-[node name="StartButton" type="TextureButton" parent="MarginContainer/HBox"]
+[node name="StopButton" type="TextureButton" parent="MarginContainer/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("3_35xkq")
-texture_pressed = ExtResource("4_xa0ln")
+texture_normal = ExtResource("5_l07ny")
+texture_pressed = ExtResource("6_h41kj")
+stretch_mode = 3
 
 [node name="PauseButton" type="TextureButton" parent="MarginContainer/HBox"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_x5wy7")
 texture_pressed = ExtResource("6_ksrvi")
+stretch_mode = 3
+
+[node name="StartButton" type="TextureButton" parent="MarginContainer/HBox"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("3_35xkq")
+texture_pressed = ExtResource("4_xa0ln")
+stretch_mode = 3
 
 [node name="OptionsButton" type="TextureButton" parent="MarginContainer/HBox"]
 unique_name_in_owner = true
@@ -70,6 +92,7 @@ visible = false
 layout_mode = 2
 texture_normal = ExtResource("7_1svvo")
 texture_pressed = ExtResource("8_qhpah")
+stretch_mode = 3
 
 [node name="DeleteButton" type="TextureButton" parent="MarginContainer/HBox"]
 unique_name_in_owner = true
@@ -77,9 +100,11 @@ visible = false
 layout_mode = 2
 texture_normal = ExtResource("9_0buo7")
 texture_pressed = ExtResource("10_o8uc0")
+stretch_mode = 3
 
 [connection signal="timer_list_item_pressed" from="ListItemBase" to="." method="_on_timer_group_list_item_timer_list_item_pressed"]
-[connection signal="pressed" from="MarginContainer/HBox/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBox/StopButton" to="." method="_on_stop_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBox/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBox/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBox/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBox/DeleteButton" to="." method="_on_delete_button_pressed"]

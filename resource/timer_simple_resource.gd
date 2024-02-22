@@ -98,3 +98,6 @@ func save():
 	var dir_exists = DirAccess.dir_exists_absolute("user://" + path)
 	if !dir_exists: DirAccess.make_dir_absolute("user://" + path)
 	ResourceSaver.save(self, "user://" + path + "/" + id + ".tres")
+	
+func delete_file():
+	DirAccess.remove_absolute("user://" + path + "/" + id + ".tres")

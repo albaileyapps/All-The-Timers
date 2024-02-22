@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cecko41y51im2"]
+[gd_scene load_steps=4 format=3 uid="uid://cecko41y51im2"]
 
 [ext_resource type="Theme" uid="uid://cwmjrgohke0do" path="res://theme/main_theme.tres" id="1_ig3n6"]
 [ext_resource type="Script" path="res://main.gd" id="1_u6ln7"]
 [ext_resource type="Texture2D" uid="uid://be167c1l1xcy3" path="res://asset/img/bkg.png" id="2_modmj"]
-[ext_resource type="PackedScene" uid="uid://phcl75naqfnw" path="res://view/TimerGroupView/timer_group_view.tscn" id="3_k3pfu"]
-[ext_resource type="Resource" uid="uid://ljoutbq7fv42" path="res://resource/root_timer_group.tres" id="5_804vq"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -26,7 +24,10 @@ grow_vertical = 2
 texture = ExtResource("2_modmj")
 expand_mode = 1
 
-[node name="TimerGroupView" parent="." instance=ExtResource("3_k3pfu")]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-timer_group = ExtResource("5_804vq")
-title = "All The Timers"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

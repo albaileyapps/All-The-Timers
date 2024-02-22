@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg0cv8bdlydbp"]
+
+[ext_resource type="PackedScene" uid="uid://byermvvramri1" path="res://component/range_stepper/range_stepper.tscn" id="1_hetky"]
+[ext_resource type="Script" path="res://component/timer_setter/timer_setter.gd" id="1_j185m"]
+
+[node name="TimerSetter" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+alignment = 1
+script = ExtResource("1_j185m")
+
+[node name="HourStepper" parent="." instance=ExtResource("1_hetky")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = ":"
+
+[node name="MinuteStepper" parent="." instance=ExtResource("1_hetky")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = ":"
+
+[node name="SecondStepper" parent="." instance=ExtResource("1_hetky")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="down_pressed" from="HourStepper" to="." method="_on_hour_stepper_down_pressed"]
+[connection signal="up_pressed" from="HourStepper" to="." method="_on_hour_stepper_up_pressed"]
+[connection signal="down_pressed" from="MinuteStepper" to="." method="_on_minute_stepper_down_pressed"]
+[connection signal="up_pressed" from="MinuteStepper" to="." method="_on_minute_stepper_up_pressed"]
+[connection signal="down_pressed" from="SecondStepper" to="." method="_on_second_stepper_down_pressed"]
+[connection signal="up_pressed" from="SecondStepper" to="." method="_on_second_stepper_up_pressed"]

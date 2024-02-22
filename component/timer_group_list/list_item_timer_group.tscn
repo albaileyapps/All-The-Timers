@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bww3svscntriu"]
+[gd_scene load_steps=6 format=3 uid="uid://bww3svscntriu"]
 
 [ext_resource type="Script" path="res://component/timer_group_list/list_item_timer_group.gd" id="1_v63js"]
 [ext_resource type="PackedScene" uid="uid://ckia7vuewnr8q" path="res://component/timer_group_list/list_item_base.tscn" id="2_gt0jc"]
 [ext_resource type="Texture2D" uid="uid://dx5jjhuo3jfjb" path="res://asset/img/icon-arrow-right.png" id="3_gsrws"]
+[ext_resource type="Texture2D" uid="uid://bthubo55jn7b" path="res://asset/img/button-delete.png" id="4_1byi5"]
+[ext_resource type="Texture2D" uid="uid://0oseeawka6xf" path="res://asset/img/button-delete-pressed.png" id="5_rt44a"]
 
 [node name="TimerListItemGroup" type="Control"]
-custom_minimum_size = Vector2(2.08165e-12, 100)
+custom_minimum_size = Vector2(2.08165e-12, 200)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -32,6 +34,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -41,11 +46,21 @@ mouse_filter = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 82
 
 [node name="RightArrow" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_gsrws")
-stretch_mode = 2
+stretch_mode = 3
+
+[node name="DeleteButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("4_1byi5")
+texture_pressed = ExtResource("5_rt44a")
+stretch_mode = 3
 
 [connection signal="timer_list_item_pressed" from="ListItemBase" to="." method="_on_timer_group_list_item_timer_list_item_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]

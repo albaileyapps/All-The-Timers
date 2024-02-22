@@ -1,13 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://dul6k01rd31do"]
+[gd_scene load_steps=8 format=3 uid="uid://dul6k01rd31do"]
 
-[ext_resource type="Script" path="res://view/edit_timer_view/edit_timer_view.gd" id="1_p7im4"]
-[ext_resource type="Theme" uid="uid://cwmjrgohke0do" path="res://theme/main_theme.tres" id="1_u5vcn"]
-[ext_resource type="Shader" path="res://shader/panel_blur.gdshader" id="3_kisc5"]
-[ext_resource type="Texture2D" uid="uid://c21t28dluvwtg" path="res://asset/img/button-done.png" id="4_a2fih"]
-[ext_resource type="Texture2D" uid="uid://b87q0sh7t3huw" path="res://asset/img/button-close.png" id="5_fngt3"]
+[ext_resource type="Theme" uid="uid://cwmjrgohke0do" path="res://theme/main_theme.tres" id="1_xh4h3"]
+[ext_resource type="Script" path="res://view/edit_timer_simple_view/edit_timer_simple_view.gd" id="2_xmcwl"]
+[ext_resource type="Shader" path="res://shader/panel_blur.gdshader" id="3_va8h0"]
+[ext_resource type="PackedScene" uid="uid://cg0cv8bdlydbp" path="res://component/timer_setter/timer_setter.tscn" id="4_m43vd"]
+[ext_resource type="Texture2D" uid="uid://b87q0sh7t3huw" path="res://asset/img/button-close.png" id="5_gfjmp"]
+[ext_resource type="Texture2D" uid="uid://c21t28dluvwtg" path="res://asset/img/button-done.png" id="6_ci6kk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sv0m5"]
-shader = ExtResource("3_kisc5")
+shader = ExtResource("3_va8h0")
 shader_parameter/panel_color = null
 shader_parameter/alpha = 0.1
 
@@ -18,8 +19,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_u5vcn")
-script = ExtResource("1_p7im4")
+theme = ExtResource("1_xh4h3")
+script = ExtResource("2_xmcwl")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -62,6 +63,7 @@ placeholder_text = "Title"
 alignment = 1
 
 [node name="TimerSimpleSetupHBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 alignment = 1
 
@@ -96,6 +98,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Sequential"
 
+[node name="TimerSetter" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_m43vd")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="Spacer" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -107,15 +113,15 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
-icon = ExtResource("5_fngt3")
+icon = ExtResource("5_gfjmp")
 
-[node name="AddTimerButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="OkButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Add Timer"
-icon = ExtResource("4_a2fih")
+text = "Ok"
+icon = ExtResource("6_ci6kk")
 
 [connection signal="text_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleLineEdit" to="." method="_on_title_line_edit_text_changed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AddTimerButton" to="." method="_on_add_timer_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_ok_button_pressed"]

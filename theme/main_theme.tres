@@ -1,5 +1,7 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cwmjrgohke0do"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://cwmjrgohke0do"]
 
+[ext_resource type="StyleBox" uid="uid://dow07av0nqhcy" path="res://theme/button_normal_style_box_flat.tres" id="1_k8n6k"]
+[ext_resource type="StyleBox" uid="uid://cc2pwrfy5dg1v" path="res://theme/button_pressed_style_box_flat.tres" id="1_o6j3n"]
 [ext_resource type="Texture2D" uid="uid://sa2h5pljuyrh" path="res://asset/img/button-checkbox-checked.png" id="1_wnwfw"]
 [ext_resource type="Texture2D" uid="uid://b7m0vpnsofb8v" path="res://asset/img/button-radio-checked.png" id="2_rx7wj"]
 [ext_resource type="Texture2D" uid="uid://bsyv0rrg05lhi" path="res://asset/img/button-radio-unchecked.png" id="3_f5lj6"]
@@ -9,6 +11,11 @@
 
 [resource]
 Button/font_sizes/font_size = 48
+Button/styles/disabled = ExtResource("1_k8n6k")
+Button/styles/focus = ExtResource("1_k8n6k")
+Button/styles/hover = ExtResource("1_o6j3n")
+Button/styles/normal = ExtResource("1_k8n6k")
+Button/styles/pressed = ExtResource("1_o6j3n")
 CheckBox/font_sizes/font_size = 48
 CheckBox/icons/checked = ExtResource("1_wnwfw")
 CheckBox/icons/checked_disabled = ExtResource("1_wnwfw")
