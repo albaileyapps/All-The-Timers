@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dul6k01rd31do"]
+[gd_scene load_steps=9 format=3 uid="uid://dul6k01rd31do"]
 
 [ext_resource type="Theme" uid="uid://cwmjrgohke0do" path="res://theme/main_theme.tres" id="1_xh4h3"]
 [ext_resource type="Script" path="res://view/edit_timer_simple_view/edit_timer_simple_view.gd" id="2_xmcwl"]
 [ext_resource type="Shader" path="res://shader/panel_blur.gdshader" id="3_va8h0"]
 [ext_resource type="PackedScene" uid="uid://cg0cv8bdlydbp" path="res://component/timer_setter/timer_setter.tscn" id="4_m43vd"]
+[ext_resource type="PackedScene" uid="uid://dfqe06eonvy7d" path="res://component/color_picker/color_picker.tscn" id="5_4eelq"]
 [ext_resource type="Texture2D" uid="uid://b87q0sh7t3huw" path="res://asset/img/button-close.png" id="5_gfjmp"]
 [ext_resource type="Texture2D" uid="uid://c21t28dluvwtg" path="res://asset/img/button-done.png" id="6_ci6kk"]
 
@@ -107,6 +108,10 @@ text = "Sequential"
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="ColorPicker" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("5_4eelq")]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="Spacer" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -131,5 +136,6 @@ icon = ExtResource("6_ci6kk")
 
 [connection signal="focus_entered" from="MarginContainer/PanelContainer" to="." method="_on_panel_container_focus_entered"]
 [connection signal="text_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleLineEdit" to="." method="_on_title_line_edit_text_changed"]
+[connection signal="color_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ColorPicker" to="." method="_on_color_picker_color_selected"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_ok_button_pressed"]

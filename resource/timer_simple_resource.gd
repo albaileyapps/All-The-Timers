@@ -14,6 +14,8 @@ class_name TimerSimple
 @export var index: int
 @export var path: String
 @export var id: String
+@export var color_set: Dictionary
+		
 
 var state = Const.timer_state.STOPPED
 var time_remaining: Dictionary
@@ -27,17 +29,17 @@ signal time_elapsed_changed
 signal complete(p_timer: TimerSimple)
 signal warning_tick
 
-func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index: int = 0, p_period: Dictionary = {
-	"hours": 0,
-	"minutes": 0,
-	"seconds": 0
-}):
+func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index: int = 0, 
+p_period: Dictionary = {"hours": 0, "minutes": 0, "seconds": 0},
+p_color_set = {"top": "D02323", "bottom": "FF7E39"}
+):
 	print("init simple timer")
 	title = p_title
 	id = p_id
 	path = p_path
 	period = p_period
 	index = p_index
+	color_set = p_color_set
 
 func start():
 	state = Const.timer_state.RUNNING
@@ -73,10 +75,10 @@ func _decrement_seconds():
 	_check_warning_tick()
 	if time_remaining["seconds"] < 0:
 		if _check_timer_complete():
+			stop()
 			emit_signal("complete", self)
 			SoundManager.play_alert_snd()
 			print("finished at time: ", time_elapsed)
-			stop()
 			return
 		_decrement_minutes()
 		time_remaining["seconds"] = 59

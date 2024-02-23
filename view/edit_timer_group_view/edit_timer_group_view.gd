@@ -10,6 +10,8 @@ func _ready():
 	fadables = [self]
 	%Label.text = title
 	%TitleLineEdit.text = group.title
+	%OkButton.disabled = !(group.title.length() > 0)
+	%SequentialCheckBox.button_pressed = group.sequential
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +33,6 @@ func _on_ok_button_pressed():
 	
 
 func _on_title_line_edit_text_changed(new_text):
-	$"%OkButton".disabled = !(new_text.length() > 0)
+	%OkButton.disabled = !(new_text.length() > 0)
 
 

@@ -2,10 +2,7 @@ extends Control
 
 var is_edit_mode = false
 
-var timer: Resource:
-	set(p_val):
-		timer = p_val
-		_on_timer_set()
+var timer: TimerSimple
 
 signal timer_simple_pressed(p_timer)
 signal timer_simple_delete_pressed(p_timer)
@@ -13,12 +10,10 @@ signal timer_simple_options_pressed(p_timer)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_build_ui()
-
-func _on_timer_set():
 	timer.changed.connect(_build_ui)
 	timer.time_elapsed_changed.connect(_on_timer_tick)
 	_build_ui()
+
 
 func _build_ui():
 	%TitleLabel.text = timer.title
@@ -46,14 +41,13 @@ func _build_ui_edit_mode():
 	_set_time_label_from_dict(timer.time_remaining) #may need to change how the time label is set here
 	
 func _set_time_label_from_dict(p_dict: Dictionary):
-	#if p_dict.hours == 0:
-		#%TimeLabel.text = "%02d:%02d" % [p_dict.minutes, p_dict.seconds]
-	#else:
-		%TimeLabel.text = "%02d:%02d:%02d" % [p_dict.hours, p_dict.minutes, p_dict.seconds]
+		#%TimeLabel.text = "%02d:%02d:%02d" % [p_dict.hours, p_dict.minutes, p_dict.seconds]
+		%TimeLabel.text = "%02d:%02d" % [p_dict.minutes, p_dict.seconds]
 	
 func _on_timer_tick():
 	var t = timer.time_remaining
-	var s = "%02d:%02d:%02d" % [t.hours, t.minutes, t.seconds]
+	#var s = "%02d:%02d:%02d" % [t.hours, t.minutes, t.seconds]
+	var s = "%02d:%02d" % [t.minutes, t.seconds]
 	%TimeLabel.text = s
 
 

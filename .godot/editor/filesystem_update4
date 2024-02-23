@@ -26,3 +26,13 @@ res://util/sound_manager.gd
 res://component/range_stepper/range_stepper.gd
 res://theme/main_theme.tres
 res://view/timer_simple_view/timer_simple_view.gd
+res://main.gd
+res://util/const.gd
+res://util/bkg_event_bus.gd
+res://shader/bkg_shader.gdshader
+res://component/color_button/color_button.tscn
+res://component/color_button/color_button.gd
+res://component/color_picker/color_picker.tscn
+res://component/color_picker/color_picker.gd
+res://theme/button_normal_style_box_flat.tres
+res://theme/button_pressed_style_box_flat.tres

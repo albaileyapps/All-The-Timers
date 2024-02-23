@@ -2,7 +2,7 @@ extends Control
 
 var is_edit_mode = false
 
-var timer: Resource
+var timer: TimerGroup
 
 signal timer_group_pressed(p_timer)
 signal timer_group_delete_pressed(p_timer)

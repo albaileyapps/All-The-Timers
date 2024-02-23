@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cecko41y51im2"]
+[gd_scene load_steps=6 format=3 uid="uid://cecko41y51im2"]
 
 [ext_resource type="Theme" uid="uid://cwmjrgohke0do" path="res://theme/main_theme.tres" id="1_ig3n6"]
 [ext_resource type="Script" path="res://main.gd" id="1_u6ln7"]
 [ext_resource type="Texture2D" uid="uid://be167c1l1xcy3" path="res://asset/img/bkg.png" id="2_modmj"]
+[ext_resource type="Shader" path="res://shader/bkg_shader.gdshader" id="3_wlotc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_76vi4"]
+shader = ExtResource("3_wlotc")
+shader_parameter/top = Color(0, 0, 0.85098, 1)
+shader_parameter/bottom = Color(0.615686, 0, 0, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -14,7 +20,8 @@ grow_vertical = 2
 theme = ExtResource("1_ig3n6")
 script = ExtResource("1_u6ln7")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Bkg" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_76vi4")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

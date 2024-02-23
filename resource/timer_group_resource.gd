@@ -10,6 +10,9 @@ class_name TimerGroup
 var children: Array = []
 var children_loaded = false
 
+signal start_next_in_sequence(p_timer: TimerSimple)
+signal sequence_complete
+
 func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index: int = 0, p_sequential = false):
 	title = p_title
 	id = p_id
@@ -81,8 +84,18 @@ func delete_timer_group(p_timer_group: TimerGroup):
 	emit_changed()
 	
 func _on_child_timer_complete(p_child: TimerSimple):
-	print("child timer complete")
-	
+	if !sequential: return
+
+	var idx = children.find(p_child)
+	print("just finished timer index = ", idx)
+	for i in range(idx + 1, children.size()):
+		if children[i] is TimerSimple:
+			emit_signal("start_next_in_sequence", children[i])
+			children[i].start()
+			return
+	emit_signal("sequence_complete")
+		
+		
 func save():
 	var dir_exists = DirAccess.dir_exists_absolute("user://" + path)
 	if !dir_exists: DirAccess.make_dir_absolute("user://" + path)

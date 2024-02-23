@@ -15,9 +15,11 @@ script = ExtResource("1_j185m")
 
 [node name="HourStepper" parent="." instance=ExtResource("1_hetky")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = ":"

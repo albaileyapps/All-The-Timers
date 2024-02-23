@@ -9,6 +9,17 @@ func _ready():
 	var timer_group_view = load("res://view/timer_group_view/timer_group_view.tscn").instantiate()
 	timer_group_view.timer_group = res
 	$MarginContainer.add_child(timer_group_view)
+	_set_bkg_colors(Const.color_sets[6])
+	BkgEventBus.set_bkg_color.connect(_set_bkg_colors)
+	
+func _set_bkg_colors(p_dict: Dictionary):
+	#should check that p_dict contains "top" and "botton" keys with valid color values
+	
+	var dur = 0.6
+	var tween = create_tween()
+	tween.parallel().tween_property($Bkg.get_material(), "shader_parameter/top", Color(p_dict.top), dur)
+	tween.parallel().tween_property($Bkg.get_material(), "shader_parameter/bottom", Color(p_dict.bottom), dur)
+	
 	
 func set_margins():
 	### TAKE CARE OF NOTCHES AND SUCH
@@ -19,14 +30,11 @@ func set_margins():
 	var y_scale = size.y / window_size.y
 	var x_scale = size.x / window_size.x
 	
-# SET BASE MARGINS (THE ONES YOU HAVE CURRENTLY IN YOUR MARGIN CONTAINER
 	var top= safe_area.position.y * y_scale
 	var left = safe_area.position.x * x_scale
 	var bottom = (window_size.y - safe_area.size.y - safe_area.position.y) * y_scale
 	var right = (window_size.x - safe_area.size.x - safe_area.position.x) * x_scale
 	
-	
-# OVERRIDE MARGIN CONTAINER (HOSTS THIS SCRIPT)
 	$MarginContainer.add_theme_constant_override("margin_top",top)
 	$MarginContainer.add_theme_constant_override("margin_left",0)
 	$MarginContainer.add_theme_constant_override("margin_right",0)

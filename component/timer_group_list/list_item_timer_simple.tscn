@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://0oseeawka6xf" path="res://asset/img/button-delete-pressed.png" id="10_o8uc0"]
 
 [node name="TimerGroupListItemSimple" type="Control"]
-custom_minimum_size = Vector2(2.08165e-12, 260)
+custom_minimum_size = Vector2(2.08165e-12, 140)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +26,7 @@ mouse_filter = 1
 script = ExtResource("1_xgwgt")
 
 [node name="ListItemBase" parent="." instance=ExtResource("2_81v75")]
-custom_minimum_size = Vector2(2.08165e-12, 200)
+custom_minimum_size = Vector2(2.08165e-12, 140)
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0

@@ -5,6 +5,8 @@ var timer_group: TimerGroup
 
 var is_edit_mode = false
 
+var timer_simple_view_is_shown = false
+
 @onready var navbar = $VBoxContainer/NavBar
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +14,8 @@ func _ready():
 	fadables = [$VBoxContainer]
 	navbar.exit_pressed.connect(_on_exit_pressed)
 	timer_group.changed.connect(_on_timer_group_changed)
+	timer_group.start_next_in_sequence.connect(_on_timer_group_next_in_sequence)
+	timer_group.sequence_complete.connect(_on_timer_group_sequence_complete)
 	timer_group.load_children()
 
 func _on_timer_group_changed():
@@ -49,7 +53,6 @@ func _on_timer_group_pressed(p_timer: Resource):
 	timer_group_view.timer_group = p_timer
 	fade(0.0, 0.3, 0.0)
 	add_child_view(timer_group_view, 0.3, 0.3)
-
 	timer_group_view.navbar.show_exit_button = true
 	timer_group_view.navbar.exit_pressed.connect(_on_child_group_view_exit_pressed)
 	
@@ -62,13 +65,40 @@ func _on_timer_group_delete_pressed(p_timer_group: TimerGroup):
 func _on_timer_simple_pressed(p_timer: TimerSimple):
 	var timer_simple_view = load("res://view/timer_simple_view/timer_simple_view.tscn").instantiate()
 	timer_simple_view.timer = p_timer
+	timer_simple_view.timer_complete.connect(_on_timer_simple_complete)
 	fade(0.0, 0.3, 0.0)
 	add_child_view(timer_simple_view, 0.3, 0.3)
+	timer_simple_view_is_shown = true
 	timer_simple_view.navbar.show_exit_button = true
 	timer_simple_view.navbar.exit_pressed.connect(_on_child_simple_view_exit_pressed)
 	
 func _on_child_simple_view_exit_pressed():
 	fade(1.0, 0.3, 0.4)
+	timer_simple_view_is_shown = false
+	
+#if a TimerSimple Finished and its parent group is sequential, the timer_simple_view must be removed
+#and replaced with a new view with the next timer in the sequence
+#this is connected to the timer_complete signal of the view instead of the timer itself
+#because the timer can run without a view being loaded
+func _on_timer_simple_complete(p_view: ViewBase):
+	if !timer_group.sequential: return
+	p_view.remove_from_parent_view(0.3)
+	#timer_simple_view_is_shown = false
+	
+func _on_timer_group_next_in_sequence(p_timer: TimerSimple):
+	if !timer_simple_view_is_shown: return
+	var timer_simple_view = load("res://view/timer_simple_view/timer_simple_view.tscn").instantiate()
+	timer_simple_view.timer = p_timer
+	timer_simple_view.timer_complete.connect(_on_timer_simple_complete)
+	fade(0.0, 0.3, 0.0)
+	add_child_view(timer_simple_view, 0.3, 0.3)
+	timer_simple_view_is_shown = true
+	timer_simple_view.navbar.show_exit_button = true
+	timer_simple_view.navbar.exit_pressed.connect(_on_child_simple_view_exit_pressed)
+	
+func _on_timer_group_sequence_complete():
+	fade(1.0, 0.3, 0.4)
+	timer_simple_view_is_shown = false
 	
 func _on_timer_simple_delete_pressed(p_timer: TimerSimple):
 	timer_group.delete_timer_simple(p_timer)
