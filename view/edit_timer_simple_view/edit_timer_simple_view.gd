@@ -2,10 +2,13 @@ extends ViewBase
 
 signal ok_pressed(p_timer: TimerSimple)
 
+var title = "Add a New Timer"
 var timer: TimerSimple
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	fadables = [self]
+	%Label.text = title
 	%TimerSetter.timer_simple = timer
 	%TitleLineEdit.text = timer.title
 
@@ -30,3 +33,7 @@ func _on_ok_button_pressed():
 	
 	emit_signal("ok_pressed", timer)
 	remove_from_parent_view(0.3)
+
+
+func _on_panel_container_focus_entered():
+	print("panel focus entered")

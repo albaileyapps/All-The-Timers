@@ -36,8 +36,11 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="down_pressed" from="HourStepper" to="." method="_on_hour_stepper_down_pressed"]
+[connection signal="text_changed" from="HourStepper" to="." method="_on_hour_stepper_text_changed"]
 [connection signal="up_pressed" from="HourStepper" to="." method="_on_hour_stepper_up_pressed"]
 [connection signal="down_pressed" from="MinuteStepper" to="." method="_on_minute_stepper_down_pressed"]
+[connection signal="text_changed" from="MinuteStepper" to="." method="_on_minute_stepper_text_changed"]
 [connection signal="up_pressed" from="MinuteStepper" to="." method="_on_minute_stepper_up_pressed"]
 [connection signal="down_pressed" from="SecondStepper" to="." method="_on_second_stepper_down_pressed"]
+[connection signal="text_changed" from="SecondStepper" to="." method="_on_second_stepper_text_changed"]
 [connection signal="up_pressed" from="SecondStepper" to="." method="_on_second_stepper_up_pressed"]

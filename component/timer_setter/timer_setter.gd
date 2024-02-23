@@ -36,3 +36,18 @@ func _on_second_stepper_up_pressed():
 func _on_second_stepper_down_pressed():
 	timer_simple.period.seconds -= 1
 	_set_values(timer_simple.period)
+
+
+func _on_hour_stepper_text_changed(p_text: String):
+	timer_simple.period.hours = clamp(int(p_text), 0, 99)
+	#_set_values(timer_simple.period)
+
+
+func _on_minute_stepper_text_changed(p_text: String):
+	timer_simple.period.minutes = clamp(int(p_text), 0, 59)
+	#_set_values(timer_simple.period)
+
+
+func _on_second_stepper_text_changed(p_text: String):
+	timer_simple.period.seconds = clamp(int(p_text), 0, 59)
+	#_set_values(timer_simple.period)

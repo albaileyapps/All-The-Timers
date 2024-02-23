@@ -22,6 +22,8 @@ func _on_timer_time_elapsed_changed():
 	_build_ui()
 	
 func _build_ui():
+	%TitleLabel.visible =  !(timer.title.length() == 0)
+	
 	%TitleLabel.text = timer.title
 	var t = timer.time_remaining
 	var s = "%02d:%02d:%02d" % [t.hours, t.minutes, t.seconds]

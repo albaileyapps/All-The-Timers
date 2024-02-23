@@ -3,9 +3,12 @@ extends ViewBase
 signal ok_pressed(p_group: TimerGroup)
 
 var group: TimerGroup
+var title = "Add a New Timer Group"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	fadables = [self]
+	%Label.text = title
 	%TitleLineEdit.text = group.title
 
 

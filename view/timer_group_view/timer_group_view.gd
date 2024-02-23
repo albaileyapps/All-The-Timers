@@ -76,6 +76,7 @@ func _on_timer_simple_delete_pressed(p_timer: TimerSimple):
 func _on_timer_simple_options_pressed(p_timer: TimerSimple):
 	var view = load("res://view/edit_timer_simple_view/edit_timer_simple_view.tscn").instantiate()
 	view.timer = p_timer
+	view.title = "Edit Timer"
 	view.ok_pressed.connect(_on_timer_simple_edited)
 	add_child_view(view, 0.3, 0.0)
 	
@@ -83,6 +84,7 @@ func _on_timer_simple_edited(p_timer: TimerSimple):
 	p_timer.reset() #hack to set the time remaining (which is displayed) to the period
 	p_timer.save()
 	p_timer.emit_changed()
+	#timer_group.emit_changed()
 
 func _on_add_timer_button_pressed():
 	var view = load("res://view/edit_timer_simple_view/edit_timer_simple_view.tscn").instantiate()
@@ -112,12 +114,13 @@ func _on_edit_mode_button_pressed():
 	print("toggle edit mode: ", is_edit_mode)
 	_build_ui()
 
-func _on_options_button_pressed():
+func _on_edit_group_button_pressed():
 	var view = load("res://view/edit_timer_group_view/edit_timer_group_view.tscn").instantiate()
 	view.group = timer_group
+	view.title = "Edit Timer Group"
 	view.ok_pressed.connect(_on_timer_group_edited)
 	add_child_view(view, 0.3, 0.0)
-	
+		
 func _on_timer_group_edited(p_timer: TimerGroup):
 	p_timer.save()
 	p_timer.emit_changed()
@@ -125,3 +128,4 @@ func _on_timer_group_edited(p_timer: TimerGroup):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timer_group.process(delta)
+

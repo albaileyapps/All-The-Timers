@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://phcl75naqfnw"]
+[gd_scene load_steps=9 format=3 uid="uid://phcl75naqfnw"]
 
 [ext_resource type="Script" path="res://view/timer_group_view/timer_group_view.gd" id="1_duyjh"]
 [ext_resource type="PackedScene" uid="uid://chh3v0bh3n3dd" path="res://component/navbar/nav_bar.tscn" id="2_i2sjs"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://qf8aqhi472jp" path="res://component/timer_group_list/timer_group_list.tscn" id="3_tqflf"]
 [ext_resource type="Texture2D" uid="uid://c21t28dluvwtg" path="res://asset/img/button-done.png" id="4_8v76y"]
 [ext_resource type="Texture2D" uid="uid://hm5al0glgjtl" path="res://asset/img/button-timer.png" id="4_ij4sk"]
-[ext_resource type="Texture2D" uid="uid://b8r5p2tfmn3ou" path="res://asset/img/button-cog-pressed.png" id="4_kfj0a"]
 [ext_resource type="Texture2D" uid="uid://dx4stvk0f1fd0" path="res://asset/img/button-group.png" id="5_1achs"]
 
 [node name="TimerGroupView" type="Control"]
@@ -31,12 +30,7 @@ grow_vertical = 2
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="OptionsButton" type="TextureButton" parent="VBoxContainer/NavBar/HBoxContainerRight" index="0"]
-layout_mode = 2
-texture_normal = ExtResource("3_s6gdt")
-texture_pressed = ExtResource("4_kfj0a")
-
-[node name="EditModeButton" type="TextureButton" parent="VBoxContainer/NavBar/HBoxContainerRight" index="1"]
+[node name="EditModeButton" type="TextureButton" parent="VBoxContainer/NavBar/HBoxContainerRight" index="0"]
 layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("3_kwixf")
@@ -77,9 +71,15 @@ size_flags_horizontal = 3
 text = "Add Group"
 icon = ExtResource("5_1achs")
 
-[connection signal="pressed" from="VBoxContainer/NavBar/HBoxContainerRight/OptionsButton" to="." method="_on_options_button_pressed"]
+[node name="EditGroupButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Edit"
+icon = ExtResource("3_s6gdt")
+
 [connection signal="pressed" from="VBoxContainer/NavBar/HBoxContainerRight/EditModeButton" to="." method="_on_edit_mode_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/AddTimerButton" to="." method="_on_add_timer_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/AddGroupButton" to="." method="_on_add_group_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/EditGroupButton" to="." method="_on_edit_group_button_pressed"]
 
 [editable path="VBoxContainer/NavBar"]

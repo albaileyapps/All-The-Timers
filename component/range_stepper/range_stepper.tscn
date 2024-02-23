@@ -5,10 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://cpavdofgsdqon" path="res://asset/img/icon-arrow-down.png" id="3_hflwt"]
 
 [node name="RangeStepper" type="VBoxContainer"]
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 376.0
 grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_ntldx")
@@ -18,19 +17,34 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("2_cwvae")
 texture_pressed = ExtResource("2_cwvae")
+stretch_mode = 3
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="LineEdit" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 100
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 128
 text = "00"
-horizontal_alignment = 1
+alignment = 1
+max_length = 2
+context_menu_enabled = false
+virtual_keyboard_type = 2
+select_all_on_focus = true
+caret_blink = true
 
 [node name="DownButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("3_hflwt")
 texture_pressed = ExtResource("3_hflwt")
+stretch_mode = 3
+
+[node name="SpinBox" type="SpinBox" parent="."]
+visible = false
+layout_mode = 2
+max_value = 59.0
+alignment = 1
 
 [connection signal="pressed" from="UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="text_changed" from="Label" to="." method="_on_label_text_changed"]
 [connection signal="pressed" from="DownButton" to="." method="_on_down_button_pressed"]

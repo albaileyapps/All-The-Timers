@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ofj8m"]
 shader = ExtResource("3_vyu4b")
 shader_parameter/panel_color = null
-shader_parameter/alpha = 0.1
+shader_parameter/alpha = 0.5
 
 [node name="EditGroupView" type="Control"]
 layout_mode = 3
@@ -21,62 +21,71 @@ grow_vertical = 2
 theme = ExtResource("1_6aqax")
 script = ExtResource("2_68vem")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-material = SubResource("ShaderMaterial_ofj8m")
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+material = SubResource("ShaderMaterial_ofj8m")
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 60
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Add A New Timer Group"
 horizontal_alignment = 1
 
-[node name="TitleLineEdit" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLineEdit" type="LineEdit" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 placeholder_text = "Title"
 alignment = 1
 
-[node name="TimerGroupSetupHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TimerGroupSetupHBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="SequentialCheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/TimerGroupSetupHBox"]
+[node name="SequentialCheckBox" type="CheckBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerGroupSetupHBox"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Sequential"
 
-[node name="Spacer" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer" type="Control" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="CancelButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
 icon = ExtResource("4_dck2i")
 
-[node name="OkButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="OkButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -85,6 +94,6 @@ text = "Ok
 "
 icon = ExtResource("5_v1pgo")
 
-[connection signal="text_changed" from="PanelContainer/MarginContainer/VBoxContainer/TitleLineEdit" to="." method="_on_title_line_edit_text_changed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_ok_button_pressed"]
+[connection signal="text_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleLineEdit" to="." method="_on_title_line_edit_text_changed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_ok_button_pressed"]

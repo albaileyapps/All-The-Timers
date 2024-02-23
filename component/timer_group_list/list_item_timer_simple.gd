@@ -21,48 +21,29 @@ func _on_timer_set():
 	_build_ui()
 
 func _build_ui():
+	%TitleLabel.text = timer.title
 	if is_edit_mode:
 		_build_ui_edit_mode()
 		return
-	%TitleLabel.text = timer.title
-	match timer.state:
-		Const.timer_state.RUNNING:
-			_build_ui_running()
-		Const.timer_state.PAUSED:
-			_build_ui_paused()
-		Const.timer_state.STOPPED:
-			_build_ui_stopped()
-		
-func _build_ui_running():
-	%StartButton.visible = false
-	%StopButton.visible = true
-	%PauseButton.visible = true
 	%OptionsButton.visible = false
 	%DeleteButton.visible = false
-	_set_time_label_from_dict(timer.time_remaining)
-	
-#on the list item, only a start or pause button are shown
-func _build_ui_stopped():
-	%StartButton.visible = true
-	%StopButton.visible = false
-	%PauseButton.visible = false
-	%OptionsButton.visible = false
-	%DeleteButton.visible = false
-	_set_time_label_from_dict(timer.period)
-	
-func _build_ui_paused():
-	%StartButton.visible = true
-	%StopButton.visible = true
-	%PauseButton.visible = false
-	%OptionsButton.visible = false
-	%DeleteButton.visible = false
-	_set_time_label_from_dict(timer.time_remaining)
+	%StartButton.visible = !(timer.state == Const.timer_state.RUNNING)
+	%StopButton.visible = !(timer.state == Const.timer_state.STOPPED)
+	%PauseButton.visible = (timer.state == Const.timer_state.RUNNING)
+	if timer.state == Const.timer_state.STOPPED:
+		_set_time_label_from_dict(timer.period)
+	else:
+		_set_time_label_from_dict(timer.time_remaining)
+
+
 	
 func _build_ui_edit_mode():
 	%StartButton.visible = false
+	%StopButton.visible = false
 	%PauseButton.visible = false
 	%OptionsButton.visible = true
 	%DeleteButton.visible = true
+	_set_time_label_from_dict(timer.time_remaining) #may need to change how the time label is set here
 	
 func _set_time_label_from_dict(p_dict: Dictionary):
 	#if p_dict.hours == 0:

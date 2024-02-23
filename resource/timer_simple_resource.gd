@@ -20,8 +20,12 @@ var time_remaining: Dictionary
 var time_elapsed = 0
 var current_second = 0
 
+#how many seconds before finishing to play a warning sound
+var warning_ticks = 5
+
 signal time_elapsed_changed
 signal complete(p_timer: TimerSimple)
+signal warning_tick
 
 func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index: int = 0, p_period: Dictionary = {
 	"hours": 0,
@@ -35,9 +39,9 @@ func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index
 	period = p_period
 	index = p_index
 
-
 func start():
 	state = Const.timer_state.RUNNING
+	_decrement_seconds()
 	emit_changed()
 	
 func pause():
@@ -66,9 +70,12 @@ func process(delta):
 		
 func _decrement_seconds():
 	time_remaining["seconds"] -= 1
+	_check_warning_tick()
 	if time_remaining["seconds"] < 0:
 		if _check_timer_complete():
 			emit_signal("complete", self)
+			SoundManager.play_alert_snd()
+			print("finished at time: ", time_elapsed)
 			stop()
 			return
 		_decrement_minutes()
@@ -92,6 +99,13 @@ func _check_timer_complete():
 	if time_remaining["minutes"] > 0: return false
 	if time_remaining["seconds"] > 0: return false
 	return true
+	
+func _check_warning_tick():
+	if time_remaining["hours"] > 0: return 
+	if time_remaining["minutes"] > 0: return 
+	if time_remaining["seconds"] >= warning_ticks: return 
+	emit_signal("warning_tick")
+	SoundManager.play_tick_snd()
 	
 func save():
 	print("saving simple timer")

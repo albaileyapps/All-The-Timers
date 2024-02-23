@@ -22,3 +22,7 @@ res://component/timer_group_list/list_item_timer_simple.tscn
 res://view/edit_timer_group_view/edit_timer_group_view.gd
 res://component/timer_group_list/list_item_timer_group.gd
 res://component/timer_group_list/list_item_timer_group.tscn
+res://util/sound_manager.gd
+res://component/range_stepper/range_stepper.gd
+res://theme/main_theme.tres
+res://view/timer_simple_view/timer_simple_view.gd
