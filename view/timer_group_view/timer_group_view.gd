@@ -36,16 +36,16 @@ func _build_ui():
 		if child is TimerGroup:
 			var item = load("res://component/timer_group_list/list_item_timer_group.tscn").instantiate()
 			item.timer = child
-			item.timer_group_pressed.connect(_on_timer_group_pressed)
-			item.timer_group_delete_pressed.connect(_on_timer_group_delete_pressed)
+			item.timer_group_pressed.connect(_on_timer_group_list_item_pressed)
+			item.timer_group_delete_pressed.connect(_on_timer_group_list_item_delete_pressed)
 			item.is_edit_mode = is_edit_mode
 			$"%TimerGroupList".add_item(item)
 		if child is TimerSimple:
 			var item = load("res://component/timer_group_list/list_item_timer_simple.tscn").instantiate()
 			item.timer = child
-			item.timer_simple_pressed.connect(_on_timer_simple_pressed)
-			item.timer_simple_delete_pressed.connect(_on_timer_simple_delete_pressed)
-			item.timer_simple_options_pressed.connect(_on_timer_simple_options_pressed)
+			item.timer_simple_pressed.connect(_on_timer_simple_list_item_pressed)
+			item.timer_simple_delete_pressed.connect(_on_timer_simple_list_item_delete_pressed)
+			item.timer_simple_options_pressed.connect(_on_timer_simple_list_item_options_pressed)
 			item.is_edit_mode = is_edit_mode
 			$"%TimerGroupList".add_item(item)
 
@@ -54,7 +54,7 @@ func _remove_timer():
 	pass
 	
 	
-func _on_timer_group_pressed(p_timer: Resource):
+func _on_timer_group_list_item_pressed(p_timer: Resource):
 	var timer_group_view = load("res://view/timer_group_view/timer_group_view.tscn").instantiate()
 	timer_group_view.timer_group = p_timer
 	fade(0.0, 0.3, 0.0)
@@ -66,10 +66,10 @@ func _on_child_group_view_exit_pressed():
 	fade(1.0, 0.3, 0.4)
 	_build_ui()
 	
-func _on_timer_group_delete_pressed(p_timer_group: TimerGroup):
+func _on_timer_group_list_item_delete_pressed(p_timer_group: TimerGroup):
 	timer_group.delete_timer_group(p_timer_group)
 	
-func _on_timer_simple_pressed(p_timer: TimerSimple):
+func _on_timer_simple_list_item_pressed(p_timer: TimerSimple):
 	var timer_simple_view = load("res://view/timer_simple_view/timer_simple_view.tscn").instantiate()
 	timer_simple_view.timer = p_timer
 	timer_simple_view.timer_complete.connect(_on_timer_simple_complete)
@@ -109,10 +109,10 @@ func _on_timer_group_sequence_complete():
 	timer_simple_view_is_shown = false
 	_build_ui()
 	
-func _on_timer_simple_delete_pressed(p_timer: TimerSimple):
+func _on_timer_simple_list_item_delete_pressed(p_timer: TimerSimple):
 	timer_group.delete_timer_simple(p_timer)
 	
-func _on_timer_simple_options_pressed(p_timer: TimerSimple):
+func _on_timer_simple_list_item_options_pressed(p_timer: TimerSimple):
 	var view = load("res://view/edit_timer_simple_view/edit_timer_simple_view.tscn").instantiate()
 	view.timer = p_timer
 	view.title = "Edit Timer"
@@ -167,7 +167,6 @@ func _on_edit_mode_button_pressed():
 	print("toggle edit mode: ", is_edit_mode)
 	_build_ui()
 
-		
 func _on_timer_group_edited(p_timer: TimerGroup):
 	p_timer.save()
 	p_timer.emit_changed()
@@ -175,7 +174,6 @@ func _on_timer_group_edited(p_timer: TimerGroup):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timer_group.process(delta)
-
 
 func _on_options_button_pressed():
 	var view = load("res://view/edit_timer_group_view/edit_timer_group_view.tscn").instantiate()
