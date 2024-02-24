@@ -117,32 +117,46 @@ func _on_timer_simple_options_pressed(p_timer: TimerSimple):
 	view.timer = p_timer
 	view.title = "Edit Timer"
 	view.ok_pressed.connect(_on_timer_simple_edited)
+	view.cancel_pressed.connect(_on_timer_simple_edit_view_cancel_pressed)
+	fade(0.0, 0.3, 0.0)
 	add_child_view(view, 0.3, 0.0)
 	
 func _on_timer_simple_edited(p_timer: TimerSimple):
 	p_timer.reset() #hack to set the time remaining (which is displayed) to the period
 	p_timer.save()
 	p_timer.emit_changed()
+	fade(1.0, 0.3, 0.3)
 	#timer_group.emit_changed()
 
 func _on_add_timer_button_pressed():
 	var view = load("res://view/edit_timer_simple_view/edit_timer_simple_view.tscn").instantiate()
 	view.timer = TimerSimple.new()
-	view.ok_pressed.connect(_on_timer_simple_added)
+	view.ok_pressed.connect(_on_timer_simple_edit_view_ok_pressed)
+	view.cancel_pressed.connect(_on_timer_simple_edit_view_cancel_pressed)
 	add_child_view(view, 0.3, 0.0)
+	fade(0.0, 0.3, 0.0)
 	
-func _on_timer_simple_added(p_timer: TimerSimple):
+func _on_timer_simple_edit_view_ok_pressed(p_timer: TimerSimple):
 	p_timer.reset() #hack to set the time remaining (which is displayed) to the period
 	timer_group.add_timer_simple(p_timer)
+	fade(1.0, 0.3, 0.0)
+	
+func _on_timer_simple_edit_view_cancel_pressed():
+	fade(1.0, 0.3, 0.0)
 	
 func _on_add_group_button_pressed():
 	var view = load("res://view/edit_timer_group_view/edit_timer_group_view.tscn").instantiate()
 	view.group = TimerGroup.new()
-	view.ok_pressed.connect(_on_timer_group_added)
+	view.ok_pressed.connect(_on_timer_group_edit_view_ok_pressed)
+	view.cancel_pressed.connect(_on_timer_group_edit_view_cancel_pressed)
 	add_child_view(view, 0.3, 0.0)
+	fade(0.0, 0.3, 0.0)
 
-func _on_timer_group_added(p_group: TimerGroup):
+func _on_timer_group_edit_view_ok_pressed(p_group: TimerGroup):
 	timer_group.add_timer_group(p_group)
+	
+func _on_timer_group_edit_view_cancel_pressed():
+	fade(1.0, 0.3, 0.0)
 	
 func _on_exit_pressed():
 	timer_group.unload_children()

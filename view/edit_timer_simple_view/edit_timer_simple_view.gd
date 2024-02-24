@@ -1,6 +1,7 @@
 extends ViewBase
 
 signal ok_pressed(p_timer: TimerSimple)
+signal cancel_pressed
 
 var title = "Add a New Timer"
 var timer: TimerSimple
@@ -25,6 +26,7 @@ func _process(delta):
 
 func _on_cancel_button_pressed():
 	remove_from_parent_view(0.3)
+	emit_signal("cancel_pressed")
 
 
 func _on_title_line_edit_text_changed(new_text):
