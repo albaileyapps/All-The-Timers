@@ -19,4 +19,5 @@ func set_selected_color(p_color_set: Dictionary):
 		child.set_highlight(p_color_set)
 		
 func _on_color_button_pressed(p_color_set: Dictionary):
+	set_selected_color(p_color_set)
 	emit_signal("color_selected", p_color_set)

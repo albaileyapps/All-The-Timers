@@ -1,9 +1,6 @@
 extends ViewBase
 
-var timer: TimerSimple: 
-	set(p_val):
-		timer = p_val
-		_on_timer_set()
+var timer: TimerSimple
 
 var title: String
 
@@ -14,12 +11,12 @@ signal timer_complete(p_view)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	navbar.exit_pressed.connect(_on_exit_pressed)
-
-func _on_timer_set():
 	timer.time_elapsed_changed.connect(_on_timer_time_elapsed_changed)
 	timer.changed.connect(_on_timer_time_elapsed_changed)
 	timer.complete.connect(_on_timer_simple_complete)
+	BkgEventBus.emit_signal("set_bkg_color", timer.color_set)
 	_build_ui()
+
 	
 func _on_timer_time_elapsed_changed():
 	_build_ui()

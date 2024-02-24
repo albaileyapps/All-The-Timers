@@ -72,15 +72,16 @@ size_flags_horizontal = 3
 text = "Add Group"
 icon = ExtResource("5_1achs")
 
-[node name="EditGroupButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="OptionsButton" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Edit"
+text = "Options"
 icon = ExtResource("3_s6gdt")
 
 [connection signal="pressed" from="VBoxContainer/NavBar/HBoxContainerRight/EditModeButton" to="." method="_on_edit_mode_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/AddTimerButton" to="." method="_on_add_timer_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/AddGroupButton" to="." method="_on_add_group_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/EditGroupButton" to="." method="_on_edit_group_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 
 [editable path="VBoxContainer/NavBar"]

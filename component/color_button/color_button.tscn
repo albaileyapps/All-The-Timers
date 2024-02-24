@@ -17,7 +17,6 @@ custom_minimum_size = Vector2(2.08165e-12, 140)
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-size_flags_horizontal = 3
 script = ExtResource("1_yq76l")
 
 [node name="Highlight" type="TextureRect" parent="."]

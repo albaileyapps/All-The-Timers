@@ -2,13 +2,12 @@
 
 [ext_resource type="Script" path="res://component/color_picker/color_picker.gd" id="1_im68p"]
 
-[node name="ColorPicker" type="GridContainer"]
+[node name="ColorPicker" type="HFlowContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
-columns = 8
+alignment = 1
 script = ExtResource("1_im68p")

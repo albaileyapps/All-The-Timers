@@ -16,7 +16,9 @@ func _ready():
 
 
 func _build_ui():
-	%TitleLabel.text = timer.title
+	var suffix = ":  " if timer.title.length() > 0 else ""
+	%TitleLabel.text = timer.title + suffix
+	%IconColor.color_set = timer.color_set
 	if is_edit_mode:
 		_build_ui_edit_mode()
 		return

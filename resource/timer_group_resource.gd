@@ -6,6 +6,7 @@ class_name TimerGroup
 @export var id: String
 @export var index: int
 @export var sequential: bool
+@export var color_set: Dictionary
 
 var children: Array = []
 var children_loaded = false
@@ -13,12 +14,14 @@ var children_loaded = false
 signal start_next_in_sequence(p_timer: TimerSimple)
 signal sequence_complete
 
-func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index: int = 0, p_sequential = false):
+func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index: int = 0, p_sequential = false,
+p_color_set = Const.color_sets[1]):
 	title = p_title
 	id = p_id
 	path = p_path
 	index = p_index
 	sequential = p_sequential
+	color_set = p_color_set
 
 	
 #a TimerGroup loads its children timers when it is opened in a timer group view

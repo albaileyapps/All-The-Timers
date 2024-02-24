@@ -7,6 +7,10 @@ var is_edit_mode = false
 
 var timer_simple_view_is_shown = false
 
+#use this to hide the options button on the home screen
+#root group cannot be edited
+var show_options_button = true
+
 @onready var navbar = $VBoxContainer/NavBar
 
 # Called when the node enters the scene tree for the first time.
@@ -17,13 +21,15 @@ func _ready():
 	timer_group.start_next_in_sequence.connect(_on_timer_group_next_in_sequence)
 	timer_group.sequence_complete.connect(_on_timer_group_sequence_complete)
 	timer_group.load_children()
+	%OptionsButton.visible = show_options_button
+	_build_ui()
 
 func _on_timer_group_changed():
 	_build_ui()
 
 func _build_ui():
-	print("build ui")
 	navbar.title = timer_group.title
+	BkgEventBus.emit_signal("set_bkg_color", timer_group.color_set)
 	
 	$"%TimerGroupList".remove_all()
 	for child in timer_group.children:
@@ -58,6 +64,7 @@ func _on_timer_group_pressed(p_timer: Resource):
 	
 func _on_child_group_view_exit_pressed():
 	fade(1.0, 0.3, 0.4)
+	_build_ui()
 	
 func _on_timer_group_delete_pressed(p_timer_group: TimerGroup):
 	timer_group.delete_timer_group(p_timer_group)
@@ -75,6 +82,7 @@ func _on_timer_simple_pressed(p_timer: TimerSimple):
 func _on_child_simple_view_exit_pressed():
 	fade(1.0, 0.3, 0.4)
 	timer_simple_view_is_shown = false
+	_build_ui()
 	
 #if a TimerSimple Finished and its parent group is sequential, the timer_simple_view must be removed
 #and replaced with a new view with the next timer in the sequence
@@ -99,6 +107,7 @@ func _on_timer_group_next_in_sequence(p_timer: TimerSimple):
 func _on_timer_group_sequence_complete():
 	fade(1.0, 0.3, 0.4)
 	timer_simple_view_is_shown = false
+	_build_ui()
 	
 func _on_timer_simple_delete_pressed(p_timer: TimerSimple):
 	timer_group.delete_timer_simple(p_timer)
@@ -144,12 +153,6 @@ func _on_edit_mode_button_pressed():
 	print("toggle edit mode: ", is_edit_mode)
 	_build_ui()
 
-func _on_edit_group_button_pressed():
-	var view = load("res://view/edit_timer_group_view/edit_timer_group_view.tscn").instantiate()
-	view.group = timer_group
-	view.title = "Edit Timer Group"
-	view.ok_pressed.connect(_on_timer_group_edited)
-	add_child_view(view, 0.3, 0.0)
 		
 func _on_timer_group_edited(p_timer: TimerGroup):
 	p_timer.save()
@@ -159,3 +162,10 @@ func _on_timer_group_edited(p_timer: TimerGroup):
 func _process(delta):
 	timer_group.process(delta)
 
+
+func _on_options_button_pressed():
+	var view = load("res://view/edit_timer_group_view/edit_timer_group_view.tscn").instantiate()
+	view.group = timer_group
+	view.title = "Edit Timer Group"
+	view.ok_pressed.connect(_on_timer_group_edited)
+	add_child_view(view, 0.3, 0.0)

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6waumvmlwdck"]
+
+[ext_resource type="Shader" path="res://shader/bkg_shader.gdshader" id="1_4adk2"]
+[ext_resource type="Texture2D" uid="uid://bgxfp74unpyko" path="res://asset/img/icon-color.png" id="2_mjwkq"]
+[ext_resource type="Script" path="res://component/timer_group_list/icon_color.gd" id="3_gnss2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_24cnh"]
+resource_local_to_scene = true
+shader = ExtResource("1_4adk2")
+shader_parameter/top = null
+shader_parameter/bottom = null
+
+[node name="IconColor" type="TextureRect"]
+material = SubResource("ShaderMaterial_24cnh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_mjwkq")
+stretch_mode = 3
+script = ExtResource("3_gnss2")

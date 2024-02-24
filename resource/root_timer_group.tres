@@ -9,3 +9,7 @@ path = "saved-timers"
 id = "root"
 index = 0
 sequential = false
+color_set = {
+"bottom": "9F41D9",
+"top": "3E1A74"
+}

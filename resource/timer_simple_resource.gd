@@ -31,7 +31,7 @@ signal warning_tick
 
 func _init(p_title: String = "", p_id: String = "", p_path: String = "", p_index: int = 0, 
 p_period: Dictionary = {"hours": 0, "minutes": 0, "seconds": 0},
-p_color_set = {"top": "D02323", "bottom": "FF7E39"}
+p_color_set = Const.color_sets[1]
 ):
 	print("init simple timer")
 	title = p_title

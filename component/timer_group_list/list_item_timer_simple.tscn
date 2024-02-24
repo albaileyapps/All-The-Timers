@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqlh6f3jty1as"]
+[gd_scene load_steps=16 format=3 uid="uid://cqlh6f3jty1as"]
 
 [ext_resource type="Script" path="res://component/timer_group_list/list_item_timer_simple.gd" id="1_xgwgt"]
 [ext_resource type="PackedScene" uid="uid://ckia7vuewnr8q" path="res://component/timer_group_list/list_item_base.tscn" id="2_81v75"]
 [ext_resource type="Texture2D" uid="uid://4t2tny6ytlbx" path="res://asset/img/button-start.png" id="3_35xkq"]
+[ext_resource type="PackedScene" uid="uid://b6waumvmlwdck" path="res://component/timer_group_list/icon_color.tscn" id="3_ov0sk"]
+[ext_resource type="Shader" path="res://shader/bkg_shader.gdshader" id="4_geafd"]
 [ext_resource type="Texture2D" uid="uid://cjqgy65y2xu7v" path="res://asset/img/button-start-pressed.png" id="4_xa0ln"]
 [ext_resource type="Texture2D" uid="uid://begrtoiumly4a" path="res://asset/img/button-stop.png" id="5_l07ny"]
 [ext_resource type="Texture2D" uid="uid://cayo2wwxod65c" path="res://asset/img/button-pause.png" id="5_x5wy7"]
@@ -12,6 +14,12 @@
 [ext_resource type="Texture2D" uid="uid://b8r5p2tfmn3ou" path="res://asset/img/button-cog-pressed.png" id="8_qhpah"]
 [ext_resource type="Texture2D" uid="uid://bthubo55jn7b" path="res://asset/img/button-delete.png" id="9_0buo7"]
 [ext_resource type="Texture2D" uid="uid://0oseeawka6xf" path="res://asset/img/button-delete-pressed.png" id="10_o8uc0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y12s8"]
+resource_local_to_scene = true
+shader = ExtResource("4_geafd")
+shader_parameter/top = null
+shader_parameter/bottom = null
 
 [node name="TimerGroupListItemSimple" type="Control"]
 custom_minimum_size = Vector2(2.08165e-12, 140)
@@ -39,7 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 50
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
@@ -47,6 +55,11 @@ theme_override_constants/margin_bottom = 20
 [node name="HBox" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="IconColor" parent="MarginContainer/HBox" instance=ExtResource("3_ov0sk")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_y12s8")
+layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/HBox"]
 unique_name_in_owner = true

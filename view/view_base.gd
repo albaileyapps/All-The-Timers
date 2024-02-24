@@ -2,8 +2,6 @@ extends Control
 
 class_name ViewBase
 
-const transition_duration = 0.3
-
 var fadables: Array[Node] = []
 signal exit
 

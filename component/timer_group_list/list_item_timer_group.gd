@@ -15,6 +15,7 @@ func _build_ui():
 	%TitleLabel.text = timer.title
 	%RightArrow.visible = !is_edit_mode
 	%DeleteButton.visible = is_edit_mode
+	%IconColor.color_set = timer.color_set
 		
 
 func _on_timer_group_list_item_timer_list_item_pressed():

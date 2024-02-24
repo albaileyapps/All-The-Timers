@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bww3svscntriu"]
+[gd_scene load_steps=9 format=3 uid="uid://bww3svscntriu"]
 
 [ext_resource type="Script" path="res://component/timer_group_list/list_item_timer_group.gd" id="1_v63js"]
 [ext_resource type="PackedScene" uid="uid://ckia7vuewnr8q" path="res://component/timer_group_list/list_item_base.tscn" id="2_gt0jc"]
 [ext_resource type="Texture2D" uid="uid://dx5jjhuo3jfjb" path="res://asset/img/icon-arrow-right.png" id="3_gsrws"]
+[ext_resource type="PackedScene" uid="uid://b6waumvmlwdck" path="res://component/timer_group_list/icon_color.tscn" id="3_oicik"]
 [ext_resource type="Texture2D" uid="uid://bthubo55jn7b" path="res://asset/img/button-delete.png" id="4_1byi5"]
+[ext_resource type="Shader" path="res://shader/bkg_shader.gdshader" id="4_vdlcg"]
 [ext_resource type="Texture2D" uid="uid://0oseeawka6xf" path="res://asset/img/button-delete-pressed.png" id="5_rt44a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmd0k"]
+resource_local_to_scene = true
+shader = ExtResource("4_vdlcg")
+shader_parameter/top = null
+shader_parameter/bottom = null
 
 [node name="TimerListItemGroup" type="Control"]
 custom_minimum_size = Vector2(2.08165e-12, 140)
@@ -34,7 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 50
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
@@ -42,6 +50,11 @@ theme_override_constants/margin_bottom = 20
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
+
+[node name="IconColor" parent="MarginContainer/HBoxContainer" instance=ExtResource("3_oicik")]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_cmd0k")
+layout_mode = 2
 
 [node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true

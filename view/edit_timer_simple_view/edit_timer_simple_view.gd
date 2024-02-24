@@ -46,4 +46,3 @@ func _on_panel_container_focus_entered():
 
 func _on_color_picker_color_selected(p_color_set):
 	timer.color_set = p_color_set
-	_build_ui()
