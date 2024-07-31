@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://shader/panel_blur.gdshader" id="3_va8h0"]
 [ext_resource type="PackedScene" uid="uid://cg0cv8bdlydbp" path="res://component/timer_setter/timer_setter.tscn" id="4_m43vd"]
 [ext_resource type="PackedScene" uid="uid://dfqe06eonvy7d" path="res://component/color_picker/color_picker.tscn" id="5_4eelq"]
-[ext_resource type="Texture2D" uid="uid://b87q0sh7t3huw" path="res://asset/img/button-close.png" id="5_gfjmp"]
+[ext_resource type="Texture2D" uid="uid://bthubo55jn7b" path="res://asset/img/button-delete.png" id="6_7uti2"]
 [ext_resource type="Texture2D" uid="uid://c21t28dluvwtg" path="res://asset/img/button-done.png" id="6_ci6kk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sv0m5"]
@@ -68,34 +68,6 @@ theme_override_font_sizes/font_size = 80
 placeholder_text = "Title"
 alignment = 1
 
-[node name="TimerSimpleSetupHBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-alignment = 1
-
-[node name="HourSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerSimpleSetupHBox"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 99.0
-alignment = 1
-suffix = ":"
-custom_arrow_step = 1.0
-
-[node name="MinuteSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerSimpleSetupHBox"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 99.0
-alignment = 1
-suffix = ":"
-custom_arrow_step = 1.0
-
-[node name="SecondSpinBox" type="SpinBox" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TimerSimpleSetupHBox"]
-unique_name_in_owner = true
-layout_mode = 2
-max_value = 99.0
-alignment = 1
-custom_arrow_step = 1.0
-
 [node name="TimerGroupSetupHBox" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -121,12 +93,6 @@ mouse_filter = 2
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="CancelButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Cancel"
-icon = ExtResource("5_gfjmp")
-
 [node name="OkButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -134,8 +100,12 @@ size_flags_horizontal = 3
 text = "Ok"
 icon = ExtResource("6_ci6kk")
 
+[node name="DeleteButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("6_7uti2")
+
 [connection signal="focus_entered" from="MarginContainer/PanelContainer" to="." method="_on_panel_container_focus_entered"]
 [connection signal="text_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TitleLineEdit" to="." method="_on_title_line_edit_text_changed"]
 [connection signal="color_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ColorPicker" to="." method="_on_color_picker_color_selected"]
-[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/OkButton" to="." method="_on_ok_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]

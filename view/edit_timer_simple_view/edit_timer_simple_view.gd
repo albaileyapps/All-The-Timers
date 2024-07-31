@@ -1,7 +1,7 @@
 extends ViewBase
 
 signal ok_pressed(p_timer: TimerSimple)
-signal cancel_pressed
+signal delete_pressed(p_timer: TimerSimple)
 
 var title = "Add a New Timer"
 var timer: TimerSimple
@@ -33,18 +33,17 @@ func _on_title_line_edit_text_changed(new_text):
 #	$"%AddTimerButton".disabled = !(new_text.length() > 0)
 	pass
 
-
 func _on_ok_button_pressed():
-	var new_title: String = $"%TitleLineEdit".text
-	timer.title = new_title
-	
+	timer.title = %TitleLineEdit.text
 	emit_signal("ok_pressed", timer)
 	remove_from_parent_view(0.3)
-
 
 func _on_panel_container_focus_entered():
 	print("panel focus entered")
 
-
 func _on_color_picker_color_selected(p_color_set):
 	timer.color_set = p_color_set
+
+func _on_delete_button_pressed():
+	emit_signal("delete_pressed", timer)
+	remove_from_parent_view(0.3)

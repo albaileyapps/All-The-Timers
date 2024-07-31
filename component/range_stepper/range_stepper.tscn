@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://byermvvramri1"]
+[gd_scene load_steps=6 format=3 uid="uid://byermvvramri1"]
 
 [ext_resource type="Script" path="res://component/range_stepper/range_stepper.gd" id="1_ntldx"]
-[ext_resource type="Texture2D" uid="uid://dg7dbk0vqnkpv" path="res://asset/img/icon-arrow-up.png" id="2_cwvae"]
-[ext_resource type="Texture2D" uid="uid://cpavdofgsdqon" path="res://asset/img/icon-arrow-down.png" id="3_hflwt"]
+[ext_resource type="Texture2D" uid="uid://dpwmdiekkagf2" path="res://asset/img/button-arrow-up.png" id="2_rhw5a"]
+[ext_resource type="Texture2D" uid="uid://3vsdcf3d7cqs" path="res://asset/img/button-arrow-up-pressed.png" id="3_3yogp"]
+[ext_resource type="Texture2D" uid="uid://bsagpek5jiqan" path="res://asset/img/button-arrow-down.png" id="4_ea3k3"]
+[ext_resource type="Texture2D" uid="uid://dvlrll7iavv51" path="res://asset/img/button-arrow-down-pressed.png" id="5_ofisc"]
 
 [node name="RangeStepper" type="VBoxContainer"]
 anchors_preset = 9
@@ -15,8 +17,8 @@ script = ExtResource("1_ntldx")
 [node name="UpButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("2_cwvae")
-texture_pressed = ExtResource("2_cwvae")
+texture_normal = ExtResource("2_rhw5a")
+texture_pressed = ExtResource("3_3yogp")
 stretch_mode = 3
 
 [node name="Label" type="LineEdit" parent="."]
@@ -35,8 +37,8 @@ caret_blink = true
 [node name="DownButton" type="TextureButton" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-texture_normal = ExtResource("3_hflwt")
-texture_pressed = ExtResource("3_hflwt")
+texture_normal = ExtResource("4_ea3k3")
+texture_pressed = ExtResource("5_ofisc")
 stretch_mode = 3
 
 [node name="SpinBox" type="SpinBox" parent="."]

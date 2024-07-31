@@ -13,19 +13,14 @@ func _ready():
 	var res = load("res://resource/root_timer_group.tres")
 	var timer_group_view = load("res://view/timer_group_view/timer_group_view.tscn").instantiate()
 	timer_group_view.timer_group = res
-	#hide the options button as the default group cannot be edited
-	timer_group_view.show_options_button = false
 	$MarginContainer.add_child(timer_group_view)
 
-
-	
 func _set_bkg_colors(p_dict: Dictionary):
 	#should check that p_dict contains "top" and "botton" keys with valid color values
 	var dur = 0.6
 	var tween = create_tween()
 	tween.parallel().tween_property($Bkg.get_material(), "shader_parameter/top", Color(p_dict.top), dur)
 	tween.parallel().tween_property($Bkg.get_material(), "shader_parameter/bottom", Color(p_dict.bottom), dur)
-	
 	
 func set_margins():
 	### TAKE CARE OF NOTCHES AND SUCH

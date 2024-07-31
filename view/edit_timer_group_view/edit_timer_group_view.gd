@@ -1,7 +1,7 @@
 extends ViewBase
 
 signal ok_pressed(p_group: TimerGroup)
-signal cancel_pressed
+signal delete_pressed(p_group: TimerGroup)
 
 var group: TimerGroup
 var title = "Add a New Timer Group"
@@ -24,9 +24,9 @@ func _process(delta):
 	pass 
 
 
-func _on_cancel_button_pressed():
+func _on_delete_button_pressed():
+	emit_signal("delete_pressed", group)
 	remove_from_parent_view(0.3)
-	emit_signal("cancel_pressed")
 
 func _on_ok_button_pressed():
 	var new_title: String = $"%TitleLineEdit".text

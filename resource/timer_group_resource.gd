@@ -97,6 +97,27 @@ func _on_child_timer_complete(p_child: TimerSimple):
 			children[i].start()
 			return
 	emit_signal("sequence_complete")
+	
+func next_timer(p_timer: TimerSimple):
+	var simple_timers = children.filter(func(timer): return timer is TimerSimple)
+	var idx = simple_timers.find(p_timer)
+	if idx < simple_timers.size() - 1:
+		return simple_timers[idx+1]
+	return null
+
+	
+func previous_timer(p_timer: TimerSimple):
+	var simple_timers = children.filter(func(timer): return timer is TimerSimple)
+	var idx = simple_timers.find(p_timer)
+	if idx > 0:
+		return simple_timers[idx-1]
+	return null
+	
+func child_timer_has_previous(p_child: TimerSimple) -> bool:
+	return true
+	
+func child_timer_has_next(p_child: TimerSimple) -> bool:
+	return true
 		
 		
 func save():
