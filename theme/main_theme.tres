@@ -1,21 +1,12 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cwmjrgohke0do"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cwmjrgohke0do"]
 
 [ext_resource type="StyleBox" uid="uid://dow07av0nqhcy" path="res://theme/button_normal_style_box_flat.tres" id="1_k8n6k"]
 [ext_resource type="StyleBox" uid="uid://cc2pwrfy5dg1v" path="res://theme/button_pressed_style_box_flat.tres" id="1_o6j3n"]
-[ext_resource type="Texture2D" uid="uid://sa2h5pljuyrh" path="res://asset/img/button-checkbox-checked.png" id="1_wnwfw"]
-[ext_resource type="Texture2D" uid="uid://b7m0vpnsofb8v" path="res://asset/img/button-radio-checked.png" id="2_rx7wj"]
-[ext_resource type="Texture2D" uid="uid://bsyv0rrg05lhi" path="res://asset/img/button-radio-unchecked.png" id="3_f5lj6"]
-[ext_resource type="Texture2D" uid="uid://dlp0c0scr1whe" path="res://asset/img/button-checkbox-unchecked.png" id="4_dsgle"]
+[ext_resource type="Texture2D" uid="uid://gbplpm2187hm" path="res://asset/img/button-checkbox-checked.png" id="1_wnwfw"]
+[ext_resource type="Texture2D" uid="uid://ch8xogxnmyrfk" path="res://asset/img/button-radio-checked.png" id="2_rx7wj"]
+[ext_resource type="Texture2D" uid="uid://bk8g1trojcoha" path="res://asset/img/button-radio-unchecked.png" id="3_f5lj6"]
+[ext_resource type="Texture2D" uid="uid://c8o566ia3lqkv" path="res://asset/img/button-checkbox-unchecked.png" id="4_dsgle"]
 [ext_resource type="StyleBox" uid="uid://c8r4uldydnjji" path="res://theme/panel_style_box.tres" id="5_7qh70"]
-[ext_resource type="Texture2D" uid="uid://b5bicyfptxyh0" path="res://asset/img/icon-arrow-up-down.png" id="6_p334e"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8m037"]
-bg_color = Color(0, 0, 0, 0.784314)
-corner_detail = 1
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e8mc8"]
-bg_color = Color(0, 0, 0, 0.784314)
-corner_detail = 1
 
 [resource]
 Button/font_sizes/font_size = 32
@@ -36,8 +27,7 @@ CheckBox/icons/unchecked_disabled = ExtResource("4_dsgle")
 Label/font_sizes/font_size = 48
 LineEdit/constants/minimum_character_width = 2
 LineEdit/font_sizes/font_size = 48
-LineEdit/styles/focus = SubResource("StyleBoxFlat_8m037")
-LineEdit/styles/normal = SubResource("StyleBoxFlat_e8mc8")
+LineEdit/styles/focus = ExtResource("5_7qh70")
+LineEdit/styles/normal = ExtResource("5_7qh70")
 Panel/styles/panel = ExtResource("5_7qh70")
 PanelContainer/styles/panel = ExtResource("5_7qh70")
-SpinBox/icons/updown = ExtResource("6_p334e")

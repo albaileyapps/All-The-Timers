@@ -1,18 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://bv111nc0nfjjo"]
+[gd_scene load_steps=17 format=3 uid="uid://bv111nc0nfjjo"]
 
 [ext_resource type="Script" path="res://view/timer_simple_view/timer_simple_view.gd" id="1_tx6t5"]
 [ext_resource type="PackedScene" uid="uid://chh3v0bh3n3dd" path="res://component/navbar/nav_bar.tscn" id="2_jetpk"]
-[ext_resource type="Texture2D" uid="uid://b18wemxk8687i" path="res://asset/img/button-arrow-left.png" id="3_0s56q"]
-[ext_resource type="Texture2D" uid="uid://pp6amlyw2263" path="res://asset/img/button-start-l.png" id="3_2x3cc"]
+[ext_resource type="Texture2D" uid="uid://c7wvtdbk1j2l5" path="res://asset/img/button-arrow-left.png" id="3_0s56q"]
+[ext_resource type="Texture2D" uid="uid://co2bvq6hw85ou" path="res://asset/img/button-start-l.png" id="3_2x3cc"]
 [ext_resource type="PackedScene" uid="uid://c88nr8k6p5c1i" path="res://component/timer_simple_view_timer_label.tscn" id="3_3q1xj"]
-[ext_resource type="Texture2D" uid="uid://b3lwcwpr7rsbv" path="res://asset/img/button-arrow-left-pressed.png" id="4_51sdk"]
-[ext_resource type="Texture2D" uid="uid://do7ckdhjxgw2i" path="res://asset/img/button-start-l-pressed.png" id="4_m6sp7"]
-[ext_resource type="Texture2D" uid="uid://d20sw7il7ncyn" path="res://asset/img/button-stop-l.png" id="5_3f2a8"]
-[ext_resource type="Texture2D" uid="uid://cy4rrk7hoqwyc" path="res://asset/img/button-stop-l-pressed.png" id="6_gg8gq"]
-[ext_resource type="Texture2D" uid="uid://tgkp1wtiwwq5" path="res://asset/img/button-pause-l.png" id="7_eaat4"]
-[ext_resource type="Texture2D" uid="uid://kdnuekg6syt2" path="res://asset/img/button-pause-l-pressed.png" id="8_2qbjk"]
-[ext_resource type="Texture2D" uid="uid://c57s75yrhjqf3" path="res://asset/img/button-arrow-right.png" id="11_m27vx"]
-[ext_resource type="Texture2D" uid="uid://cebqve1n8uxau" path="res://asset/img/button-arrow-right-pressed.png" id="12_wbk36"]
+[ext_resource type="Texture2D" uid="uid://ybchxqximmv7" path="res://asset/img/button-arrow-left-pressed.png" id="4_51sdk"]
+[ext_resource type="Texture2D" uid="uid://lrum34o16was" path="res://asset/img/button-start-l-pressed.png" id="4_m6sp7"]
+[ext_resource type="Texture2D" uid="uid://nmc2ev0flvlt" path="res://asset/img/button-stop-l.png" id="5_3f2a8"]
+[ext_resource type="Texture2D" uid="uid://1o5pwjq71iku" path="res://asset/img/button-stop-l-pressed.png" id="6_gg8gq"]
+[ext_resource type="Texture2D" uid="uid://cwhieecacp7d1" path="res://asset/img/button-pause-l.png" id="7_eaat4"]
+[ext_resource type="Texture2D" uid="uid://bdaw1swbqchf7" path="res://asset/img/button-pause-l-pressed.png" id="8_2qbjk"]
+[ext_resource type="Texture2D" uid="uid://dwbantxowr7j1" path="res://asset/img/button-stop-l-disabled.png" id="8_ou2cc"]
+[ext_resource type="Texture2D" uid="uid://bochdjdux6aw6" path="res://asset/img/button-start-l-disabled.png" id="11_knhgu"]
+[ext_resource type="Texture2D" uid="uid://tyl1tlogvth4" path="res://asset/img/button-arrow-right.png" id="11_m27vx"]
+[ext_resource type="Texture2D" uid="uid://dvq527lxhitt2" path="res://asset/img/button-arrow-right-pressed.png" id="12_wbk36"]
+[ext_resource type="Texture2D" uid="uid://gfodw12p8208" path="res://asset/img/button-pause-l-disabled.png" id="14_cstel"]
 
 [node name="TimerSimpleView" type="Control"]
 layout_mode = 3
@@ -84,21 +87,21 @@ unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_3f2a8")
 texture_pressed = ExtResource("6_gg8gq")
-texture_disabled = ExtResource("6_gg8gq")
+texture_disabled = ExtResource("8_ou2cc")
 
 [node name="StartButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("3_2x3cc")
 texture_pressed = ExtResource("4_m6sp7")
-texture_disabled = ExtResource("4_m6sp7")
+texture_disabled = ExtResource("11_knhgu")
 
 [node name="PauseButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("7_eaat4")
 texture_pressed = ExtResource("8_2qbjk")
-texture_disabled = ExtResource("8_2qbjk")
+texture_disabled = ExtResource("14_cstel")
 
 [node name="Spacer2" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2

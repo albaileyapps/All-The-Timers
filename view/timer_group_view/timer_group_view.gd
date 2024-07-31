@@ -47,7 +47,7 @@ func _on_timer_group_list_item_pressed(p_timer: Resource):
 	timer_group_view.navbar.exit_pressed.connect(_on_child_group_view_exit_pressed)
 	
 func _on_child_group_view_exit_pressed():
-	fade(1.0, 0.3, 0.4)
+	fade(1.0, 0.3, 0.3)
 	_build_ui()
 	
 func _on_timer_group_list_item_options_pressed(p_timer_group: TimerGroup):
@@ -56,7 +56,8 @@ func _on_timer_group_list_item_options_pressed(p_timer_group: TimerGroup):
 	view.title = "Edit Timer Group"
 	view.ok_pressed.connect(_on_timer_group_edited)
 	view.delete_pressed.connect(_on_timer_group_edit_view_delete_pressed)
-	add_child_view(view, 0.3, 0.0)
+	fade(0.0, 0.3, 0.0)
+	add_child_view(view, 0.3, 0.3)
 	
 func _show_timer_simple_view(p_timer: TimerSimple):
 	var timer_simple_view = load("res://view/timer_simple_view/timer_simple_view.tscn").instantiate()
@@ -73,7 +74,7 @@ func _show_timer_simple_view(p_timer: TimerSimple):
 	timer_simple_view.navbar.exit_pressed.connect(_on_child_simple_view_exit_pressed)
 	
 func _on_child_simple_view_exit_pressed():
-	fade(1.0, 0.3, 0.4)
+	fade(1.0, 0.3, 0.3)
 	timer_simple_view_is_shown = false
 	_build_ui()
 	
@@ -106,13 +107,13 @@ func _on_timer_group_next_in_sequence(p_timer: TimerSimple):
 	timer_simple_view.navbar.exit_pressed.connect(_on_child_simple_view_exit_pressed)
 	
 func _on_timer_group_sequence_complete():
-	fade(1.0, 0.3, 0.4)
+	fade(1.0, 0.3, 0.3)
 	timer_simple_view_is_shown = false
 	_build_ui()
 	
 func _on_timer_simple_list_item_delete_pressed(p_timer: TimerSimple):
 	timer_group.delete_timer_simple(p_timer)
-	fade(1.0, 0.3, 0.4)
+	fade(1.0, 0.3, 0.3)
 	
 func _on_timer_simple_list_item_options_pressed(p_timer: TimerSimple):
 	var view = load("res://view/edit_timer_simple_view/edit_timer_simple_view.tscn").instantiate()
@@ -121,7 +122,7 @@ func _on_timer_simple_list_item_options_pressed(p_timer: TimerSimple):
 	view.ok_pressed.connect(_on_timer_simple_edited)
 	view.delete_pressed.connect(_on_timer_simple_edit_view_delete_pressed)
 	fade(0.0, 0.3, 0.0)
-	add_child_view(view, 0.3, 0.0)
+	add_child_view(view, 0.3, 0.3)
 	
 func _on_timer_simple_edited(p_timer: TimerSimple):
 	p_timer.reset() #hack to set the time remaining (which is displayed) to the period
@@ -135,34 +136,34 @@ func _on_add_timer_button_pressed():
 	view.timer = TimerSimple.new()
 	view.ok_pressed.connect(_on_timer_simple_edit_view_ok_pressed)
 	view.delete_pressed.connect(_on_timer_simple_edit_view_delete_pressed)
-	add_child_view(view, 0.3, 0.0)
+	add_child_view(view, 0.3, 0.3)
 	fade(0.0, 0.3, 0.0)
 	
 func _on_timer_simple_edit_view_ok_pressed(p_timer: TimerSimple):
 	p_timer.reset() #hack to set the time remaining (which is displayed) to the period
 	timer_group.add_timer_simple(p_timer)
-	fade(1.0, 0.3, 0.0)
+	fade(1.0, 0.3, 0.3)
 	
 func _on_timer_simple_edit_view_delete_pressed(p_timer):
 	print("delete timer")
 	timer_group.delete_timer_simple(p_timer)
-	fade(1.0, 0.3, 0.0)
+	fade(1.0, 0.3, 0.3)
 	
 func _on_add_group_button_pressed():
 	var view = load("res://view/edit_timer_group_view/edit_timer_group_view.tscn").instantiate()
 	view.group = TimerGroup.new()
 	view.ok_pressed.connect(_on_timer_group_edit_view_ok_pressed)
 	view.delete_pressed.connect(_on_timer_group_edit_view_delete_pressed)
-	add_child_view(view, 0.3, 0.0)
+	add_child_view(view, 0.3, 0.3)
 	fade(0.0, 0.3, 0.0)
 
 func _on_timer_group_edit_view_ok_pressed(p_group: TimerGroup):
 	timer_group.add_timer_group(p_group)
-	fade(1.0, 0.3, 0.0)
+	fade(1.0, 0.3, 0.3)
 	
 func _on_timer_group_edit_view_delete_pressed(p_group: TimerGroup):
 	timer_group.delete_timer_group(p_group)
-	fade(1.0, 0.3, 0.0)
+	fade(1.0, 0.3, 0.3)
 	
 func _on_exit_pressed():
 	timer_group.unload_children()
@@ -171,6 +172,7 @@ func _on_exit_pressed():
 func _on_timer_group_edited(p_timer: TimerGroup):
 	p_timer.save()
 	p_timer.emit_changed()
+	fade(1.0, 0.3, 0.3)
 	
 func _process(delta):
 	timer_group.process(delta)
