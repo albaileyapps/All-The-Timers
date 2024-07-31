@@ -8,6 +8,7 @@ class_name TimerSimple
 	"seconds": 0
 }: 
 	set(p_dict):
+		print("set dict")
 		period = p_dict
 		time_remaining = period.duplicate()
 	

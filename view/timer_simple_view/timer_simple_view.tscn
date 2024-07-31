@@ -1,13 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://bv111nc0nfjjo"]
+[gd_scene load_steps=14 format=3 uid="uid://bv111nc0nfjjo"]
 
 [ext_resource type="Script" path="res://view/timer_simple_view/timer_simple_view.gd" id="1_tx6t5"]
 [ext_resource type="PackedScene" uid="uid://chh3v0bh3n3dd" path="res://component/navbar/nav_bar.tscn" id="2_jetpk"]
+[ext_resource type="Texture2D" uid="uid://b18wemxk8687i" path="res://asset/img/button-arrow-left.png" id="3_0s56q"]
 [ext_resource type="Texture2D" uid="uid://pp6amlyw2263" path="res://asset/img/button-start-l.png" id="3_2x3cc"]
+[ext_resource type="PackedScene" uid="uid://c88nr8k6p5c1i" path="res://component/timer_simple_view_timer_label.tscn" id="3_3q1xj"]
+[ext_resource type="Texture2D" uid="uid://b3lwcwpr7rsbv" path="res://asset/img/button-arrow-left-pressed.png" id="4_51sdk"]
 [ext_resource type="Texture2D" uid="uid://do7ckdhjxgw2i" path="res://asset/img/button-start-l-pressed.png" id="4_m6sp7"]
 [ext_resource type="Texture2D" uid="uid://d20sw7il7ncyn" path="res://asset/img/button-stop-l.png" id="5_3f2a8"]
 [ext_resource type="Texture2D" uid="uid://cy4rrk7hoqwyc" path="res://asset/img/button-stop-l-pressed.png" id="6_gg8gq"]
 [ext_resource type="Texture2D" uid="uid://tgkp1wtiwwq5" path="res://asset/img/button-pause-l.png" id="7_eaat4"]
 [ext_resource type="Texture2D" uid="uid://kdnuekg6syt2" path="res://asset/img/button-pause-l-pressed.png" id="8_2qbjk"]
+[ext_resource type="Texture2D" uid="uid://c57s75yrhjqf3" path="res://asset/img/button-arrow-right.png" id="11_m27vx"]
+[ext_resource type="Texture2D" uid="uid://cebqve1n8uxau" path="res://asset/img/button-arrow-right-pressed.png" id="12_wbk36"]
 
 [node name="TimerSimpleView" type="Control"]
 layout_mode = 3
@@ -46,36 +51,69 @@ theme_override_font_sizes/font_size = 128
 text = "TITLE"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-alignment = 1
+size_flags_vertical = 3
 
-[node name="TimeLabel" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="TimeLabel" parent="VBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_3q1xj")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 340
-horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
 
+[node name="PreviousButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("3_0s56q")
+texture_pressed = ExtResource("4_51sdk")
+texture_disabled = ExtResource("4_51sdk")
+stretch_mode = 5
+
+[node name="Spacer1" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="StopButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("5_3f2a8")
 texture_pressed = ExtResource("6_gg8gq")
+texture_disabled = ExtResource("6_gg8gq")
 
 [node name="StartButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("3_2x3cc")
 texture_pressed = ExtResource("4_m6sp7")
+texture_disabled = ExtResource("4_m6sp7")
 
 [node name="PauseButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 texture_normal = ExtResource("7_eaat4")
 texture_pressed = ExtResource("8_2qbjk")
+texture_disabled = ExtResource("8_2qbjk")
 
+[node name="Spacer2" type="Control" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NextButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("11_m27vx")
+texture_pressed = ExtResource("12_wbk36")
+texture_disabled = ExtResource("12_wbk36")
+stretch_mode = 5
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/PreviousButton" to="." method="_on_previous_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/StopButton" to="." method="_on_stop_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer2/NextButton" to="." method="_on_next_button_pressed"]

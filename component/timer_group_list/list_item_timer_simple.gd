@@ -1,6 +1,6 @@
 extends Control
 
-var is_edit_mode = false
+#var is_edit_mode = false
 
 var timer: TimerSimple
 
@@ -19,10 +19,10 @@ func _build_ui():
 	var suffix = ":  " if timer.title.length() > 0 else ""
 	%TitleLabel.text = timer.title + suffix
 	%IconColor.color_set = timer.color_set
-	if is_edit_mode:
-		_build_ui_edit_mode()
-		return
-	%OptionsButton.visible = false
+	#if is_edit_mode:
+		#_build_ui_edit_mode()
+		#return
+	%OptionsButton.visible = (timer.state == Const.timer_state.STOPPED)
 	%DeleteButton.visible = false
 	%StartButton.visible = !(timer.state == Const.timer_state.RUNNING)
 	%StopButton.visible = !(timer.state == Const.timer_state.STOPPED)
@@ -63,7 +63,7 @@ func _on_stop_button_pressed():
 	timer.stop()
 	
 func _on_timer_group_list_item_timer_list_item_pressed():
-	if is_edit_mode: return
+	#if is_edit_mode: return
 	emit_signal("timer_simple_pressed", timer)
 
 
