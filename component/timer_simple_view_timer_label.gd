@@ -2,18 +2,29 @@ extends HBoxContainer
 
 var timer: TimerSimple
 
+
 # Called when the node enters the scene tree for the first time.
 func set_timer(p_timer: TimerSimple):
 	timer = p_timer
 	timer.changed.connect(_on_timer_changed)
 	timer.time_elapsed_changed.connect(_on_timer_time_elapsed_changed)
+	_build_ui()
 	_set_labels()
 
 func _on_timer_changed():
+	_build_ui()
 	_set_labels()
 
 func _on_timer_time_elapsed_changed():
 	_set_labels()
+	
+func _build_ui():
+	print("timer state = ", timer.state)
+	print("timer stopped = ", timer.state == Const.timer_state.STOPPED)
+	%MinsIncButton.visible = (timer.state == Const.timer_state.STOPPED)
+	%MinsDecButton.visible = (timer.state == Const.timer_state.STOPPED)
+	%SecondsIncButton2.visible = (timer.state == Const.timer_state.STOPPED)
+	%SecondsDecButton2.visible = (timer.state == Const.timer_state.STOPPED)
 
 func _set_labels():
 	if timer.state == Const.timer_state.STOPPED:
@@ -24,25 +35,25 @@ func _set_labels():
 		%SecondsLabel.text = str(timer.time_remaining.seconds).pad_zeros(2)
 
 func _on_mins_inc_button_pressed():
-	timer.period.minutes = wrapi(timer.period.minutes + 1, 0, 59)
+	timer.period.minutes = wrapi(timer.period.minutes + 1, 0, 60)
 	_set_labels()
 	timer.reset()
 
 
 func _on_mins_dec_button_pressed():
-	timer.period.minutes = wrapi(timer.period.minutes - 1, 0, 59)
+	timer.period.minutes = wrapi(timer.period.minutes - 1, 0, 60)
 	_set_labels()
 	timer.reset()
 	timer.save()
 
 func _on_seconds_inc_button_2_pressed():
-	timer.period.seconds = wrapi(timer.period.seconds + 1, 0, 59)
+	timer.period.seconds = wrapi(timer.period.seconds + 1, 0, 60)
 	_set_labels()
 	timer.reset()
 	timer.save()
 
 func _on_seconds_dec_button_2_pressed():
-	timer.period.seconds = wrapi(timer.period.seconds - 1, 0, 59)
+	timer.period.seconds = wrapi(timer.period.seconds - 1, 0, 60)
 	_set_labels()
 	timer.reset()
 	timer.save()

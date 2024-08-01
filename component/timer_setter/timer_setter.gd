@@ -14,32 +14,32 @@ func _set_values(p_period):
 	%SecondStepper.set_value(p_period.seconds)
 
 func _on_hour_stepper_up_pressed():
-	timer_simple.period.hours = wrapi(timer_simple.period.hours + 1, 0, 59)
+	timer_simple.period.hours = wrapi(timer_simple.period.hours + 1, 0, 100)
 	timer_simple.save()
 	_set_values(timer_simple.period)
 
 func _on_hour_stepper_down_pressed():
-	timer_simple.period.hours = wrapi(timer_simple.period.hours - 1, 0, 59)
+	timer_simple.period.hours = wrapi(timer_simple.period.hours - 1, 0, 100)
 	timer_simple.save()
 	_set_values(timer_simple.period)
 
 func _on_minute_stepper_up_pressed():
-	timer_simple.period.minutes = wrapi(timer_simple.period.minutes + 1, 0, 59)
+	timer_simple.period.minutes = wrapi(timer_simple.period.minutes + 1, 0, 60)
 	timer_simple.save()
 	_set_values(timer_simple.period)
 
 func _on_minute_stepper_down_pressed():
-	timer_simple.period.minutes = wrapi(timer_simple.period.minutes - 1, 0, 59)
+	timer_simple.period.minutes = wrapi(timer_simple.period.minutes - 1, 0, 60)
 	timer_simple.save()
 	_set_values(timer_simple.period)
 
 func _on_second_stepper_up_pressed():
-	timer_simple.period.seconds = wrapi(timer_simple.period.seconds + 1, 0, 59)
+	timer_simple.period.seconds = wrapi(timer_simple.period.seconds + 1, 0, 60)
 	timer_simple.save()
 	_set_values(timer_simple.period)
 
 func _on_second_stepper_down_pressed():
-	timer_simple.period.seconds = wrapi(timer_simple.period.seconds - 1, 0, 59)
+	timer_simple.period.seconds = wrapi(timer_simple.period.seconds - 1, 0, 60)
 	timer_simple.save()
 	_set_values(timer_simple.period)
 
@@ -50,7 +50,7 @@ func _on_hour_stepper_text_changed(p_text: String):
 
 
 func _on_minute_stepper_text_changed(p_text: String):
-	timer_simple.period.minutes = clamp(int(p_text), 0, 59)
+	timer_simple.period.minutes = clamp(int(p_text), 0, 99)
 	#_set_values(timer_simple.period)
 
 
