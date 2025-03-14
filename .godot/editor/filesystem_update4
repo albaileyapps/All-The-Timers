@@ -1,0 +1,8 @@
+res://main.tscn
+res://view/timer_group_view/timer_group_view.gd
+res://theme/button_normal_style_box_flat.tres
+res://theme/button_pressed_style_box_flat.tres
+res://theme/panel_style_box.tres
+res://theme/main_theme.tres
+res://shader/bkg_shader.gdshader
+res://main.gd

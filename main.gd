@@ -4,7 +4,7 @@ func _init():
 	pass
 
 func _ready():
-	set_margins()
+	_set_margins()
 	
 	#BkgEventBus singleton is used to set the bkg colors from anywhere
 	BkgEventBus.set_bkg_color.connect(_set_bkg_colors)
@@ -22,7 +22,7 @@ func _set_bkg_colors(p_dict: Dictionary):
 	tween.parallel().tween_property($Bkg.get_material(), "shader_parameter/top", Color(p_dict.top), dur)
 	tween.parallel().tween_property($Bkg.get_material(), "shader_parameter/bottom", Color(p_dict.bottom), dur)
 	
-func set_margins():
+func _set_margins():
 	### TAKE CARE OF NOTCHES AND SUCH
 	if OS.get_name() != "iOS" and OS.get_name() != "Android": return
 	var safe_area  = DisplayServer.get_display_safe_area()
@@ -37,8 +37,9 @@ func set_margins():
 	var right = (window_size.x - safe_area.size.x - safe_area.position.x) * x_scale
 	
 	$MarginContainer.add_theme_constant_override("margin_top",top)
-	$MarginContainer.add_theme_constant_override("margin_left",0)
-	$MarginContainer.add_theme_constant_override("margin_right",0)
+	$MarginContainer.add_theme_constant_override("margin_left", left)
+	$MarginContainer.add_theme_constant_override("margin_right",right)
 	$MarginContainer.add_theme_constant_override("margin_bottom",bottom)
 
-	
+func _on_resized():
+	_set_margins()
