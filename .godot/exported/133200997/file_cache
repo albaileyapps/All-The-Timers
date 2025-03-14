@@ -15,7 +15,7 @@ res://theme/button_normal_style_box_flat.tres::157c770b8e2a8d22640b18c0348d8370:
 res://component/range_stepper/range_stepper.tscn::d29ca62e394a5e6584812ee01200ef07::1722401587::res://.godot/exported/133200997/export-f2ad6d2a2a1531ba9c5d68b478f1e928-range_stepper.scn
 res://component/timer_setter/timer_setter.tscn::df0acded153f683172a92a25b6df1a88::1722401587::res://.godot/exported/133200997/export-1007e958b2aaeead550c13f55a0f9e99-timer_setter.scn
 res://view/edit_timer_group_view/edit_timer_group_view.tscn::4466e2256983057382e1d4bb86b6f2a9::1722417040::res://.godot/exported/133200997/export-17e10b4535821671ad453b99c36fb9a5-edit_timer_group_view.scn
-res://view/edit_timer_simple_view/edit_timer_simple_view.tscn::d63035ab015d518dffa5e3f26351bafd::1722417398::res://.godot/exported/133200997/export-14f2dbd7fb38f965d469ad8cea2edc38-edit_timer_simple_view.scn
+res://view/edit_timer_simple_view/edit_timer_simple_view.tscn::d63035ab015d518dffa5e3f26351bafd::1722425542::res://.godot/exported/133200997/export-14f2dbd7fb38f965d469ad8cea2edc38-edit_timer_simple_view.scn
 res://component/color_button/color_button.tscn::0219e16e99319b8b2c00deb483544c3e::1721958159::res://.godot/exported/133200997/export-2102d6d90317927d5a9ff6d9aaaf1798-color_button.scn
 res://component/color_picker/color_picker.tscn::de06ec5c88743e77cba5f531f253f872::1721958159::res://.godot/exported/133200997/export-43b55faba4dd41a0d9f2bae9d46074da-color_picker.scn
 res://component/timer_group_list/icon_color.tscn::138c1f48616fe2f59e0223794ad7bebb::1721958159::res://.godot/exported/133200997/export-74075be902b3cbf72e77b5c031a6cf49-icon_color.scn
