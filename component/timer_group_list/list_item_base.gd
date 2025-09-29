@@ -5,7 +5,7 @@ var touch_down_time: int
 var touch_down_pos: Vector2
 
 
-signal timer_list_item_pressed()
+signal timer_list_item_pressed
 
 func _ready():
 	pass

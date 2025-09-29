@@ -176,4 +176,3 @@ func _on_timer_group_edited(p_timer: TimerGroup):
 	
 func _process(delta):
 	timer_group.process(delta)
-

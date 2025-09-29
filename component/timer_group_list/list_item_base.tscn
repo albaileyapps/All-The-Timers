@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ckia7vuewnr8q"]
 
-[ext_resource type="Script" path="res://component/timer_group_list/list_item_base.gd" id="1_nerhx"]
+[ext_resource type="Script" uid="uid://ckx7a17w7gqye" path="res://component/timer_group_list/list_item_base.gd" id="1_nerhx"]
 
 [node name="ListItemBase" type="PanelContainer"]
 custom_minimum_size = Vector2(2.08165e-12, 100)
